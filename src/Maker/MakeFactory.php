@@ -129,7 +129,7 @@ final class MakeFactory extends AbstractMaker
         foreach ($classes as $class) {
             $this->factoryGenerator->generateFactory(
                 $io,
-                MakeFactoryQuery::fromInput($input, $class, $generateAllFactories, $generator, $input->getOption('namespace') ?? $this->defaultNamespace, $this->addHints),);
+                MakeFactoryQuery::fromInput($input, $class, $generateAllFactories, $generator, $input->getOption('namespace') ?? $this->defaultNamespace, $this->addHints), );
         }
 
         $generator->writeChanges();
