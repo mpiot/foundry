@@ -27,11 +27,6 @@ final class GenericEntityFactoryTest extends GenericFactoryTestCase
 {
     use RequiresORM;
 
-    protected static function factory(): GenericEntityFactory
-    {
-        return GenericEntityFactory::new();
-    }
-
     /**
      * @test
      */
@@ -58,5 +53,10 @@ final class GenericEntityFactoryTest extends GenericFactoryTestCase
         enable_persisting();
 
         EmptyConstructorFactory::assert()->count(0);
+    }
+
+    protected static function factory(): GenericEntityFactory
+    {
+        return GenericEntityFactory::new();
     }
 }
