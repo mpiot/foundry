@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v1.38.6](https://github.com/zenstruck/foundry/releases/tag/v1.38.6)
+
+April 2nd, 2025 - [v1.38.5...v1.38.6](https://github.com/zenstruck/foundry/compare/v1.38.5...v1.38.6)
+
+* e15a489 minor: fix compatibility with  4 (#864) by @nikophil
+
 ## [v1.38.4](https://github.com/zenstruck/foundry/releases/tag/v1.38.4)
 
 January 3rd, 2025 - [v1.38.3...v1.38.4](https://github.com/zenstruck/foundry/compare/v1.38.3...v1.38.4)
