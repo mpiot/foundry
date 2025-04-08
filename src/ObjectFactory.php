@@ -225,7 +225,7 @@ abstract class ObjectFactory extends Factory
      */
     final protected function reusedAttributes(): array
     {
-        if ($this->reusedObjects === []) {
+        if ([] === $this->reusedObjects) {
             return [];
         }
 
