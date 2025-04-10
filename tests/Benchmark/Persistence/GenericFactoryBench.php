@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the zenstruck/foundry package.
+ *
+ * (c) Kevin Bond <kevinbond@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Zenstruck\Foundry\Tests\Benchmark\Persistence;
 
 use PhpBench\Attributes\BeforeClassMethods;
@@ -20,7 +29,7 @@ abstract class GenericFactoryBench extends KernelBench
     #[BeforeMethods('_setup_bench_random')]
     public function bench_random(): void
     {
-        mt_srand(1);
+        \mt_srand(1);
         static::factory()::random();
     }
 
@@ -28,8 +37,8 @@ abstract class GenericFactoryBench extends KernelBench
     #[BeforeMethods('_setup_bench_random')]
     public function bench_random_set(array $params): void
     {
-        mt_srand(1);
-        static::factory()::randomSet((int)(ceil($params['count'] / 10))); // @phpstan-ignore argument.type
+        \mt_srand(1);
+        static::factory()::randomSet((int) \ceil($params['count'] / 10)); // @phpstan-ignore argument.type
     }
 
     public function _setup_bench_random(array $params): void
@@ -42,7 +51,7 @@ abstract class GenericFactoryBench extends KernelBench
         return [
             '50' => ['count' => 50],
             '100' => ['count' => 100],
-            '500' => ['count' => 500]
+            '500' => ['count' => 500],
         ];
     }
 

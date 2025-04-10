@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the zenstruck/foundry package.
+ *
+ * (c) Kevin Bond <kevinbond@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Zenstruck\Foundry\Tests\Benchmark;
 
 use PhpBench\Attributes\AfterMethods;
@@ -28,7 +37,7 @@ abstract class KernelBench
     {
         static::bootKernel();
 
-        Configuration::boot(static function (): Configuration {
+        Configuration::boot(static function(): Configuration {
             if (!static::getContainer()->has('.zenstruck_foundry.configuration')) {
                 throw new \LogicException('ZenstruckFoundryBundle is not enabled. Ensure it is added to your config/bundles.php.');
             }
@@ -70,10 +79,9 @@ abstract class KernelBench
     }
 
     /**
+     * @return class-string<KernelInterface>
      * @throws \RuntimeException
      * @throws \LogicException
-     *
-     * @return class-string<KernelInterface>
      */
     protected static function getKernelClass(): string
     {
@@ -81,7 +89,7 @@ abstract class KernelBench
             throw new \LogicException(\sprintf('You must set the KERNEL_CLASS environment variable to the fully-qualified class name of your Kernel in phpunit.xml / phpunit.xml.dist or override the "%1$s::createKernel()" or "%1$s::getKernelClass()" method.', static::class));
         }
 
-        if (!class_exists($class = $_ENV['KERNEL_CLASS'] ?? $_SERVER['KERNEL_CLASS'])) {
+        if (!\class_exists($class = $_ENV['KERNEL_CLASS'] ?? $_SERVER['KERNEL_CLASS'])) {
             throw new \RuntimeException(\sprintf('Class "%s" doesn\'t exist or cannot be autoloaded. Check that the KERNEL_CLASS value in phpunit.xml matches the fully-qualified class name of your Kernel or override the "%s::createKernel()" method.', $class, static::class));
         }
 
