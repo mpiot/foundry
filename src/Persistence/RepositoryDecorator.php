@@ -172,7 +172,7 @@ class RepositoryDecorator implements ObjectRepository, \IteratorAggregate, \Coun
         $count = $this->count($criteria);
         $offset = 0;
 
-        if ($count === 0) {
+        if (0 === $count) {
             throw new NotEnoughObjects(\sprintf('At least %d "%s" object(s) must have been persisted (%d persisted).', 1, $this->getClassName(), 0));
         }
 
