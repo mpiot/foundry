@@ -1,5 +1,45 @@
 # CHANGELOG
 
+## [v2.4.0](https://github.com/zenstruck/foundry/releases/tag/v2.4.0)
+
+April 14th, 2025 - [v2.3.2...v2.4.0](https://github.com/zenstruck/foundry/compare/v2.3.2...v2.4.0)
+
+* 659a7bc minor: use `mt_rand` instead of `random_int` (#869) by @kbond
+* 12b4419 perf: revert validation / `#[AsFoundryHook]` / global event system (#871) by @nikophil
+* 348b28d docs: fix default_namespace (#872) by @ebedy
+* 92d9f28 chore(phpbench): actually run phpbench with a baseline (#868) by @nikophil
+* 1a829e5 feat: optimize performance of repository::random() (#867) by @mdeboer
+* 5ccbe51 feat: add support for benchmarks using phpbench (#866) by @mdeboer, @nikophil
+* 2df354c fix: performance problem with reuse (#865) by @nikophil
+* 0747e04 docs: document Faker reproducibility (#860) by @nikophil
+* f8cc3a0 fix: handle empty constructors (#859) by @nikophil
+* cb63756 chore: merge 2.3.x (#858) by @nikophil, @mdeboer, @Chris53897
+* b1e7aec feat(maker): allow no hints (#857) by @nikophil
+* 59d617c fixes typo (#850) by @mvhirsch
+* 5cc8575 feat: introduce "reuse()" method (#804) by @nikophil, @kbond
+* 21f32b8 docs: fix wrong class name (#846) by @nikophil
+* 48d9249 docs: minor fixes (#837) by @nikophil
+* bdda45c doc: fixes linking to object-proxy (#825) by @mvhirsch
+* 719710a test: ensure Proxy::_real() always return same object (#809) by @nikophil
+* d15de0e feat: introduce `distribute()` method (#826) by @nikophil
+* 5647b5c fix: prevent infinite loop when ->create() is called in after persist callback (#832) by @nikophil
+* c0361e6 feat: validate objects (#801) by @nikophil
+* 6e1d726 fix: fix failing faker test due to csfix (#829) by @nikophil
+* 7b33216 minor: deprecate auto-persist (#818) by @nikophil
+* eb6e983 feat(faker): Improve reproducibility with faker (#807) by @nikophil
+* ae96d19 chore: use PHPUnit 12 (#810) by @nikophil
+* 413bb10 chore: upgrade phpstan (#828) by @nikophil
+* fbf0981 fix: actually disable persistence cascade (#817) by @nikophil
+* 2426f3e fix: trigger after persist callbacks for entities scheduled for insert (#822) by @nikophil
+* dea6246 fix(doc): update yml config file for reset keys (#819) by @asalisaf
+* da1e9db docs: Make sure we add links on separate lines(#823) by @Nyholm
+* ad8d72c fix: can index one to many relationships based on "indexBy" (#815) by @nikophil
+* 1c3f73a feat: introduce  attribute (#802) by @nikophil
+* f76cba2 fix: fix deprecation message for Factories trait (#806) by @nikophil
+* 207562f fix: remove APP_ENV from .env (#803) by @nikophil
+* 34101a7 feat: dispatch events (#790) by @nikophil
+* 9032c38 feat: skip readonly properties on entities when generating factories (#798) by @KDederichs, @nikophil
+
 ## [v2.3.10](https://github.com/zenstruck/foundry/releases/tag/v2.3.10)
 
 March 31st, 2025 - [v2.3.9...v2.3.10](https://github.com/zenstruck/foundry/compare/v2.3.9...v2.3.10)
