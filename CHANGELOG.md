@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.4.1](https://github.com/zenstruck/foundry/releases/tag/v2.4.1)
+
+April 15th, 2025 - [v2.4.0...v2.4.1](https://github.com/zenstruck/foundry/compare/v2.4.0...v2.4.1)
+
+* 6b4fea8 fix(faker): missing parameter when using custom `faker` service (#877) by @silasjoisten
+
 ## [v2.4.0](https://github.com/zenstruck/foundry/releases/tag/v2.4.0)
 
 April 14th, 2025 - [v2.3.2...v2.4.0](https://github.com/zenstruck/foundry/compare/v2.3.2...v2.4.0)
