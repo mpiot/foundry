@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.4.2](https://github.com/zenstruck/foundry/releases/tag/v2.4.2)
+
+April 17th, 2025 - [v2.4.1...v2.4.2](https://github.com/zenstruck/foundry/compare/v2.4.1...v2.4.2)
+
+* 25e9125 fix: Prevent random value collisions when kernel is rebooted (#879) by @HypeMC
+
 ## [v2.4.1](https://github.com/zenstruck/foundry/releases/tag/v2.4.1)
 
 April 15th, 2025 - [v2.4.0...v2.4.1](https://github.com/zenstruck/foundry/compare/v2.4.0...v2.4.1)
