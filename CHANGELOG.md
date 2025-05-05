@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [v2.4.3](https://github.com/zenstruck/foundry/releases/tag/v2.4.3)
+
+May 5th, 2025 - [v2.4.2...v2.4.3](https://github.com/zenstruck/foundry/compare/v2.4.2...v2.4.3)
+
+* 2b31429 chore: test with SF7.3 (#891) by @nikophil
+* 50350cb minor: allow 10% gap in benchmark workflow (#880) by @nikophil
+
 ## [v2.4.2](https://github.com/zenstruck/foundry/releases/tag/v2.4.2)
 
 April 17th, 2025 - [v2.4.1...v2.4.2](https://github.com/zenstruck/foundry/compare/v2.4.1...v2.4.2)
