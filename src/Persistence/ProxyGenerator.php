@@ -132,11 +132,9 @@ final class ProxyGenerator
          * ):?\s*\??[\w\\\\]*                   # 7. Optional return type, can be nullable (starts with `?`), supports namespaced types (`\Foo\Bar`)
          * \s*\{\s*$                            # 8. Opening brace `{` at the end of the line, with optional spaces before
          */
-        $proxyCode = preg_replace_callback(
+        $proxyCode = \preg_replace_callback(
             '/^(\s*(?:public|protected|private)?\s*function\s+(?!__)\w+\s*\([^\)]*\)\s*):?\s*\??[\w\\\\]*\s*\{\s*$/m',
-            function ($matches) {
-                return rtrim($matches[0]) . "\n    \$this->_autoRefresh();";
-            },
+            fn($matches) => \rtrim($matches[0])."\n    \$this->_autoRefresh();",
             $proxyCode
         );
 
