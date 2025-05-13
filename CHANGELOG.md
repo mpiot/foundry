@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [v2.5.0](https://github.com/zenstruck/foundry/releases/tag/v2.5.0)
+
+May 13th, 2025 - [v2.4.3...v2.5.0](https://github.com/zenstruck/foundry/compare/v2.4.3...v2.5.0)
+
+* cdbacdd minor: ignore deprecations related to ProxyHelper::generateLazyProxy() (#901) by @nikophil
+* a54d97e minor: ignore deprecations related to ProxyHelper::generateLazyProxy() (#901) by @nikophil
+* ae662a3 minor: make "in-memory" classes experimental (#895) (#901) by @nikophil
+* 87acf7a feat: add generic doctrine-like repository for in-memory (#887) (#901) by @nikophil
+* 7b6f70c feat: enable flush once with config (#885) (#901) by @nikophil
+* 30270ec feat: introduce "in-memory" behavior (#590) (#901) by @nikophil
+* 0b09c20 chore: decouple from framework bundle (#882) (#901) by @nikophil
+* df4d355 chore: misc DX and testsuite improvements (#881) (#901) by @nikophil
+* a19ce4c tests: add `ZenstruckFoundryBundleTest` (#878) (#901) by @silasjoisten, @nikophil
+* 5b027c0 feat: flush once (#873) (#901) by @nikophil
+
 ## [v2.4.3](https://github.com/zenstruck/foundry/releases/tag/v2.4.3)
 
 May 5th, 2025 - [v2.4.2...v2.4.3](https://github.com/zenstruck/foundry/compare/v2.4.2...v2.4.3)
