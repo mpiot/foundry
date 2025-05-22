@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [v2.5.1](https://github.com/zenstruck/foundry/releases/tag/v2.5.1)
+
+May 22nd, 2025 - [v2.5.0...v2.5.1](https://github.com/zenstruck/foundry/compare/v2.5.0...v2.5.1)
+
+* fe12d09 fix: add missing flush_once feature flag (#912) by @phasdev
+* f991999 docs: Fix data providers phpunit link (#906) by @alexander-schranz
+* 19ddd55 docs: in memory behavior needs PhpUnit extension (#905) by @nikophil
+* 6a0b4ac docs: improve docs for in-memory repositories (#904) by @nikophil
+
 ## [v2.5.0](https://github.com/zenstruck/foundry/releases/tag/v2.5.0)
 
 May 13th, 2025 - [v2.4.3...v2.5.0](https://github.com/zenstruck/foundry/compare/v2.4.3...v2.5.0)
