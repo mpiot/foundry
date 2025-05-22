@@ -11,7 +11,6 @@
 
 namespace Zenstruck\Foundry;
 
-use Zenstruck\Foundry\Configuration;
 use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
 use Zenstruck\Foundry\Persistence\PersistMode;
 
