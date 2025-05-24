@@ -174,7 +174,7 @@ abstract class ObjectFactory extends Factory
 
             // test if reused object is a subclass of the property's type
             foreach ($this->reusedObjects as $reusedObject) {
-                if (is_a($reusedObject, $type->getName())) {
+                if (\is_a($reusedObject, $type->getName())) {
                     $attributes[$property->getName()] = $reusedObject;
 
                     break;
