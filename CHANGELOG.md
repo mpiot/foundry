@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [v2.5.2](https://github.com/zenstruck/foundry/releases/tag/v2.5.2)
+
+May 26th, 2025 - [v2.5.1...v2.5.2](https://github.com/zenstruck/foundry/compare/v2.5.1...v2.5.2)
+
+* 40ce8a2 fix: reuse should work with all kind of relationships (#915) by @nikophil
+* f6c81a0 fix: can use reuse with inheritance (#914) by @nikophil
+
 ## [v2.5.1](https://github.com/zenstruck/foundry/releases/tag/v2.5.1)
 
 May 22nd, 2025 - [v2.5.0...v2.5.1](https://github.com/zenstruck/foundry/compare/v2.5.0...v2.5.1)
