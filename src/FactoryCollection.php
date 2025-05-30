@@ -151,7 +151,7 @@ final class FactoryCollection implements \IteratorAggregate
             // @phpstan-ignore method.notFound (phpstan does not understand that we only have persistent factories here)
             $factories = \array_map(static fn(Factory $f) => $f->notRootFactory(), $factories);
 
-            if ($lastFactory !== null)  {
+            if (null !== $lastFactory) {
                 $factories[] = $lastFactory;
             }
         }
