@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [v2.5.3](https://github.com/zenstruck/foundry/releases/tag/v2.5.3)
+
+May 30th, 2025 - [v2.5.2...v2.5.3](https://github.com/zenstruck/foundry/compare/v2.5.2...v2.5.3)
+
+* 01c5ce3 fix: should not use flush_after() in FactoryCollection::create() (#908) by @nikophil
+* 7545b2f docs: Fix LazyValue namespace (#919) by @odolbeau
+* ccc309b docs: fix quote (#918) by @nikophil
+* f0ae498 docs: Fix `save()` -> `_save()` in documentation (#917) by @smnandre
+
 ## [v2.5.2](https://github.com/zenstruck/foundry/releases/tag/v2.5.2)
 
 May 26th, 2025 - [v2.5.1...v2.5.2](https://github.com/zenstruck/foundry/compare/v2.5.1...v2.5.2)
