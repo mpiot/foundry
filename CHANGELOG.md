@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.5.4](https://github.com/zenstruck/foundry/releases/tag/v2.5.4)
+
+May 31st, 2025 - [v2.5.3...v2.5.4](https://github.com/zenstruck/foundry/compare/v2.5.3...v2.5.4)
+
+* 8e202b4 fix: TypeError `FactoryCollection::create()` when calling many with 0 (#925) by @jdecool
+
 ## [v2.5.3](https://github.com/zenstruck/foundry/releases/tag/v2.5.3)
 
 May 30th, 2025 - [v2.5.2...v2.5.3](https://github.com/zenstruck/foundry/compare/v2.5.2...v2.5.3)
