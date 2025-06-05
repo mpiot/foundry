@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [v2.6.0](https://github.com/zenstruck/foundry/releases/tag/v2.6.0)
+
+June 5th, 2025 - [v2.5.4...v2.6.0](https://github.com/zenstruck/foundry/compare/v2.5.4...v2.6.0)
+
+* 7e434ff feat: minor improvements to foundry:load-stories (#930) by @nikophil
+* bd50a86 merge 2.5.x into 2.x (#931) by @nikophil
+* 159d700 doc: adjust flow (#923) by @kbond
+* ca95279 feat: Introduce `#[AsFixture]` attribute and `foundry:load-fixture` command (#903) by @nikophil
+
 ## [v2.5.5](https://github.com/zenstruck/foundry/releases/tag/v2.5.5)
 
 June 4th, 2025 - [v2.5.4...v2.5.5](https://github.com/zenstruck/foundry/compare/v2.5.4...v2.5.5)
