@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.5.5](https://github.com/zenstruck/foundry/releases/tag/v2.5.5)
+
+June 4th, 2025 - [v2.5.4...v2.5.5](https://github.com/zenstruck/foundry/compare/v2.5.4...v2.5.5)
+
+* 8238e0f fix: remove useless Configuration::boted() check (#929) by @nikophil
+
 ## [v2.5.4](https://github.com/zenstruck/foundry/releases/tag/v2.5.4)
 
 May 31st, 2025 - [v2.5.3...v2.5.4](https://github.com/zenstruck/foundry/compare/v2.5.3...v2.5.4)
