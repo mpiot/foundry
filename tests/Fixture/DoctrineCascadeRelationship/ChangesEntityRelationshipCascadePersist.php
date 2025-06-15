@@ -77,9 +77,9 @@ trait ChangesEntityRelationshipCascadePersist
     {
         if (ConstraintRequirement::from('>=12')->isSatisfiedBy(PHPunitVersion::id())) {
             yield []; // @phpstan-ignore generator.valueType
+
             return;
         }
-
 
         // @phpstan-ignore deadCode.unreachable
         if (!\getenv('DATABASE_URL') || !self::$methodName) {
