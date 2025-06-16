@@ -125,7 +125,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
      */
     public static function randomRangeOrCreate(int $min, int $max, array $criteria = []): array
     {
-        $targetCount = mt_rand($min, $max);
+        $targetCount = \mt_rand($min, $max);
 
         try {
             return static::repository()->randomRange($min, $targetCount, $criteria);
@@ -135,7 +135,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
             $foundObjects = [];
         }
 
-        $objectsToCreate = $targetCount - count($foundObjects);
+        $objectsToCreate = $targetCount - \count($foundObjects);
 
         $newObjects = static::createMany($objectsToCreate, $criteria);
 
