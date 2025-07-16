@@ -35,8 +35,8 @@ abstract class Factory
     }
 
     /**
-     * @phpstan-return static
      * @phpstan-param Attributes $attributes
+     * @phpstan-return static
      */
     final public static function new(array|callable $attributes = []): static
     {
@@ -147,8 +147,8 @@ abstract class Factory
     /**
      * @phpstan-param Attributes $attributes
      *
-     * @psalm-return static<T>
      * @phpstan-return static
+     * @psalm-return static<T>
      */
     final public function with(array|callable $attributes = []): static
     {

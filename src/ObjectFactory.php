@@ -73,8 +73,8 @@ abstract class ObjectFactory extends Factory
     /**
      * @phpstan-param InstantiatorCallable $instantiator
      *
-     * @psalm-return static<T>
      * @phpstan-return static
+     * @psalm-return static<T>
      */
     final public function instantiateWith(callable $instantiator): static
     {
@@ -109,8 +109,8 @@ abstract class ObjectFactory extends Factory
     }
 
     /**
-     * @psalm-return static<T>
      * @phpstan-return static
+     * @psalm-return static<T>
      */
     final public function reuse(object ...$objects): static
     {
