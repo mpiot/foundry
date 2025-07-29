@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [v2.6.1](https://github.com/zenstruck/foundry/releases/tag/v2.6.1)
+
+July 29th, 2025 - [v2.6.0...v2.6.1](https://github.com/zenstruck/foundry/compare/v2.6.0...v2.6.1)
+
+* 932c63a feat: rename `foundry:load-stories` to `foundry:load-fixtures` (#954) by @kbond
+* 1d31275 Update index.rst (#945) by @treztreiz
+* e5e5162 fix: doctrine deprecation (#949) by @nikophil
+* dc54221 Update index.rst (#946) by @treztreiz
+* 5ae21ec docs: fix forceSet() to _set() in example (#948) by @mariecharles, Marie CHARLES
+* 56161cc feat: add `randomRangeOrCreate()` method (#932) by @elliotbruneel, Elliot Bruneel
+* 2d28e67 test: ensure no deprecation when Factories used in parent class (#922) by @nikophil
+* b25eb60 minor: fix running `phpunit` w/o arguments (#933) by @kbond
+* f9b8132 minor: add UID types to factory maker (#936) by @HypeMC
+* 030f7aa chore: temporarily disable cascade relationship combinations (#938) by @nikophil
+
 ## [v2.6.0](https://github.com/zenstruck/foundry/releases/tag/v2.6.0)
 
 June 5th, 2025 - [v2.5.4...v2.6.0](https://github.com/zenstruck/foundry/compare/v2.5.4...v2.6.0)
