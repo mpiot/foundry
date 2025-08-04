@@ -78,7 +78,7 @@ final class FactoryCollectionTest extends TestCase
     public function throws_when_does_not_return_static(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('does not return a "%s"', SomeFactory::class));
+        $this->expectExceptionMessage(\sprintf('does not return a "%s"', SomeFactory::class));
 
         SomeFactory::new()
             ->many(1)
@@ -155,11 +155,6 @@ final class FactoryCollectionTest extends TestCase
 /** @extends ObjectFactory<SomeObject> */
 final class SomeFactory extends ObjectFactory
 {
-    protected function defaults(): array
-    {
-        return [];
-    }
-
     public static function class(): string
     {
         return SomeObject::class;
@@ -183,6 +178,11 @@ final class SomeFactory extends ObjectFactory
     public function notStateMethod(): SomeObject
     {
         return new SomeObject();
+    }
+
+    protected function defaults(): array
+    {
+        return [];
     }
 }
 
