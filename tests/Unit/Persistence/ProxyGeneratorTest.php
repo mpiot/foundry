@@ -92,7 +92,7 @@ final class ProxyGeneratorTest extends TestCase
      * @test
      */
     #[Test]
-    public function it_can_generate_proxy_for_class_with_method_with_intersectionReturnType(): void
+    public function it_can_generate_proxy_for_class_with_method_with_intersection_return_type(): void
     {
         $proxyfiedObj = ProxyGenerator::wrap(new ClassWithInterSectionReturnType());
         self::assertInstanceOf(One::class, $proxyfiedObj->returnsIntersectionType());
@@ -146,8 +146,12 @@ class ClassWithUnionReturnType
     }
 }
 
-interface One {}
-interface Two {}
+interface One
+{
+}
+interface Two
+{
+}
 
 class ClassWithInterSectionReturnType
 {
