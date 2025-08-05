@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [v2.6.2](https://github.com/zenstruck/foundry/releases/tag/v2.6.2)
+
+August 5th, 2025 - [v2.6.1...v2.6.2](https://github.com/zenstruck/foundry/compare/v2.6.1...v2.6.2)
+
+* 6f4e920 fix(proxy): add autorefresh call for union and intersection return types (#959) by @BackEndTea
+* 58fd89a feat: introduce method FactoryCollection::applyStateMethod() (#956) by @nikophil
+
 ## [v2.6.1](https://github.com/zenstruck/foundry/releases/tag/v2.6.1)
 
 July 29th, 2025 - [v2.6.0...v2.6.1](https://github.com/zenstruck/foundry/compare/v2.6.0...v2.6.1)
