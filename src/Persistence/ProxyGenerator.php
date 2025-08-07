@@ -62,7 +62,7 @@ final class ProxyGenerator
                 throw new \LogicException('Cannot access to a persisted object from a data provider.');
             }
 
-            return unproxy($factory->create($attributes));
+            return self::unwrap($factory->create($attributes));
         });
     }
 

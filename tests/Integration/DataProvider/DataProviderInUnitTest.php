@@ -18,6 +18,7 @@ use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\RequiresPhpunitExtension;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use Zenstruck\Foundry\Persistence\ProxyGenerator;
 use Zenstruck\Foundry\PHPUnit\FoundryExtension;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Tests\Fixture\Entity\GenericEntity;
@@ -29,7 +30,6 @@ use Zenstruck\Foundry\Tests\Fixture\Object1;
 use Zenstruck\Foundry\Tests\Fixture\Object2;
 
 use function Zenstruck\Foundry\faker;
-use function Zenstruck\Foundry\Persistence\unproxy;
 
 /**
  * @author Nicolas PHILIPPE <nikophil@gmail.com>
@@ -58,7 +58,7 @@ final class DataProviderInUnitTest extends TestCase
     #[DataProvider('createObjectWithPersistentObjectFactoryInDataProvider')]
     public function assert_it_can_create_object_with_persistent_factory_in_data_provider(mixed $providedData, mixed $expectedData): void
     {
-        self::assertEquals($expectedData, unproxy($providedData));
+        self::assertEquals($expectedData, ProxyGenerator::unwrap($providedData));
     }
 
     public static function createObjectWithPersistentObjectFactoryInDataProvider(): iterable
@@ -71,7 +71,7 @@ final class DataProviderInUnitTest extends TestCase
     #[DataProvider('useGetterOnObjectCreatedInDataProvider')]
     public function assert_it_can_use_getter_on_object_created_in_data_provider(string $providedData, mixed $expectedData): void
     {
-        self::assertEquals($expectedData, unproxy($providedData));
+        self::assertEquals($expectedData, ProxyGenerator::unwrap($providedData));
     }
 
     public static function useGetterOnObjectCreatedInDataProvider(): iterable
