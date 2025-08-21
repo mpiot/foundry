@@ -29,7 +29,7 @@ final class DoctrineCascadeRelationshipMetadata implements \Stringable
     public function __toString(): string
     {
         // @phpstan-ignore argument.type
-        $name = \sprintf('%s::$%s - %s', substr(strrchr($this->class, '\\'), 1), $this->field, $this->cascade ? 'cascade' : 'no cascade');
+        $name = \sprintf('%s::$%s - %s', \mb_substr(\mb_strrchr($this->class, '\\'), 1), $this->field, $this->cascade ? 'cascade' : 'no cascade');
 
         if ($this->orphanRemoval) {
             $name = "{$name} - (orphan removal)";
@@ -80,7 +80,7 @@ final class DoctrineCascadeRelationshipMetadata implements \Stringable
                 }
             }
 
-            yield implode(' / ', $permutationName) => $temp;
+            yield \implode(' / ', $permutationName) => $temp;
         }
 
         if (!$hasOneToMany) {
@@ -96,6 +96,6 @@ final class DoctrineCascadeRelationshipMetadata implements \Stringable
             $temp[] = $metadata;
             $permutationName[] = (string) $metadata;
         }
-        yield implode(' / ', $permutationName) => $temp;
+        yield \implode(' / ', $permutationName) => $temp;
     }
 }
