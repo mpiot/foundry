@@ -130,6 +130,7 @@ final class Configuration
     /** @param \Closure():self|self $configuration */
     public static function boot(\Closure|self $configuration): void
     {
+        PersistedObjectsTracker::reset();
         self::$instance = $configuration;
     }
 
@@ -142,6 +143,7 @@ final class Configuration
 
     public static function shutdown(): void
     {
+        PersistedObjectsTracker::reset();
         StoryRegistry::reset();
         self::$instance = null;
     }
