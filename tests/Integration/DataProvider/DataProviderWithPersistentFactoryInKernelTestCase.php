@@ -111,7 +111,7 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
 
     #[Test]
     #[DataProvider('throwsExceptionWhenCreatingObjectInDataProvider')]
-    public function it_throws_when_creating_persisted_object_with_non_proxy_factory_in_data_provider(?\Throwable $e
+    public function it_throws_when_creating_persisted_object_with_non_proxy_factory_in_data_provider(?\Throwable $e,
     ): void {
         self::assertInstanceOf(\LogicException::class, $e);
         self::assertStringStartsWith(
@@ -134,7 +134,7 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
     #[DataProvider('useGetterOnObjectCreatedInDataProvider')]
     public function assert_it_can_use_getter_on_non_persisted_object_created_in_data_provider(
         string $providedData,
-        mixed $expectedData
+        mixed $expectedData,
     ): void {
         self::assertEquals($expectedData, unproxy($providedData));
     }
@@ -145,12 +145,12 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
         yield 'persistent factory' => [static::factory()::new()->withoutPersisting()->create()->getProp1(), 'default1'];
         yield 'persistent factory using many' => [
             static::factory()::new()->withoutPersisting()->many(1)->create()[0]->getProp1(),
-            'default1'
+            'default1',
         ];
         yield 'proxy factory' => [static::proxyFactory()::new()->withoutPersisting()->create()->getProp1(), 'default1'];
         yield 'proxy factory using many' => [
             static::proxyFactory()::new()->withoutPersisting()->many(1)->create()[0]->getProp1(),
-            'default1'
+            'default1',
         ];
     }
 
