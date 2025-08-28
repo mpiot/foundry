@@ -233,6 +233,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
 
         if ($configuration->inADataProvider()
             && Configuration::autoRefreshWithLazyObjectsIsEnabled()
+            && $this->isPersisting()
             && !$this instanceof PersistentProxyObjectFactory
         ) {
             return ProxyGenerator::wrapFactoryNativeProxy($this, $attributes);

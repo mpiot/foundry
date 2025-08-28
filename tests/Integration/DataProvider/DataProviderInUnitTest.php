@@ -71,6 +71,7 @@ final class DataProviderInUnitTest extends TestCase
 
     #[Test]
     #[DataProvider('useGetterOnObjectCreatedInDataProvider')]
+    #[IgnoreDeprecations]
     public function assert_it_can_use_getter_on_object_created_in_data_provider(string $providedData, mixed $expectedData): void
     {
         self::assertEquals($expectedData, ProxyGenerator::unwrap($providedData));
