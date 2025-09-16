@@ -16,6 +16,7 @@ namespace Zenstruck\Foundry\Tests\Integration\DataProvider;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\RequiresEnvironmentVariable;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\RequiresPhpunitExtension;
 use PHPUnit\Framework\Attributes\Test;
@@ -43,7 +44,7 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
     use ResetDatabase;
 
     #[Test]
-    #[DataProvider('createOneObjectInDataProvider')]
+    #[DataProvider('createOneProxyObjectInDataProvider')]
     public function assert_it_can_create_one_object_in_data_provider(?GenericModel $providedData): void
     {
         static::proxyFactory()::assert()->count(1);
@@ -53,7 +54,7 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
         self::assertSame('value set in data provider', $providedData->getProp1());
     }
 
-    public static function createOneObjectInDataProvider(): iterable
+    public static function createOneProxyObjectInDataProvider(): iterable
     {
         yield 'createOne()' => [
             static::proxyFactory()::createOne(['prop1' => 'value set in data provider']),
@@ -111,9 +112,8 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
 
     #[Test]
     #[DataProvider('throwsExceptionWhenCreatingObjectInDataProvider')]
-    #[RequiresEnvironmentVariable('USE_PHP_84_LAZY_OBJECTS', '0')]
-    public function it_throws_when_creating_persisted_object_with_non_proxy_factory_in_data_provider(?\Throwable $e,
-    ): void {
+    #[RequiresPhp('<8.4')]
+    public function it_throws_when_creating_persisted_object_with_non_proxy_factory_in_data_provider_without_php_84(?\Throwable $e,): void {
         self::assertInstanceOf(\LogicException::class, $e);
         self::assertStringStartsWith(
             'Cannot create object in a data provider for non-proxy factories.',
@@ -129,6 +129,28 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
         }
 
         yield [$e ?? null];
+    }
+
+    #[Test]
+    #[DataProvider('createOneObjectInDataProvider')]
+    #[RequiresPhp('>=8.4')]
+    public function assert_it_can_create_one_object_in_data_provider_without_proxy_with_php_84(mixed $providedData): void
+    {
+        static::proxyFactory()::assert()->count(1);
+
+        self::assertInstanceOf(GenericModel::class, $providedData);
+        self::assertSame('value set in data provider', $providedData->getProp1());
+    }
+
+    public static function createOneObjectInDataProvider(): iterable
+    {
+        yield 'createOne()' => [
+            static::proxyFactory()::createOne(['prop1' => 'value set in data provider']),
+        ];
+
+        yield 'create()' => [
+            static::proxyFactory()->create(['prop1' => 'value set in data provider']),
+        ];
     }
 
     #[Test]
@@ -148,9 +170,9 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
             static::factory()::new()->withoutPersisting()->many(1)->create()[0]->getProp1(),
             'default1',
         ];
-        yield 'proxy factory' => [static::proxyFactory()::new()->withoutPersisting()->create()->getProp1(), 'default1'];
+        yield 'proxy factory' => [static::proxyFactory()::new()->withoutPersisting()->create()->_real(withAutoRefresh: false)->getProp1(), 'default1'];
         yield 'proxy factory using many' => [
-            static::proxyFactory()::new()->withoutPersisting()->many(1)->create()[0]->getProp1(),
+            static::proxyFactory()::new()->withoutPersisting()->many(1)->create()[0]->_real(withAutoRefresh: false)->getProp1(),
             'default1',
         ];
     }

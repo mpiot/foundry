@@ -138,6 +138,10 @@ abstract class FoundryTestKernel extends Kernel
                 ],
             ]);
 
+            if (\PHP_VERSION_ID >= 80400) {
+                $c->loadFromExtension('doctrine', ['orm' => ['enable_native_lazy_objects' => true]]);
+            }
+
             $c->register(ChangeCascadePersistOnLoadClassMetadataListener::class)
                 ->setAutowired(true)
                 ->setAutoconfigured(true);

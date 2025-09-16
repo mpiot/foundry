@@ -98,3 +98,9 @@ You'll also need to update the PHPDoc `@extends` annotation to use the new class
 - Remove `Proxy` type for parameters in the prototype in methods and functions (covered by `ChangeProxyParamTypesRector`).
 - Remove `Proxy` return type in methods and functions (covered by `ChangeProxyReturnTypesRector`).
 - Remove all `Proxy` type hints in PHPDoc (covered by `RemovePhpDocProxyTypeHintRector`).
+
+## Troubleshooting
+
+After enabling the new auto-refresh mechanism and removing all proxy-related code, you may encounter some issues.
+Most of the time, these can be resolved by calling the `\Zenstruck\Foundry\Persistence\refresh()` function on the affected entity,
+which mimics the behavior of the former proxy mechanism.

@@ -16,11 +16,13 @@ namespace Zenstruck\Foundry\Tests\Integration\ORM;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Proxy;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\IgnorePhpunitWarnings;
 use PHPUnit\Framework\Attributes\RequiresEnvironmentVariable;
 use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\Test;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Zenstruck\Foundry\Configuration;
 use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy\PersistedObjectsTracker;
@@ -31,6 +33,7 @@ use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\Address\AddressFactory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\Category\CategoryFactory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\Contact\ContactFactory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\GenericEntityFactory;
+use Zenstruck\Foundry\Tests\Fixture\TestKernel;
 use Zenstruck\Foundry\Tests\Integration\Persistence\AutoRefreshTestCase;
 use Zenstruck\Foundry\Tests\Integration\RequiresORM;
 
@@ -142,14 +145,11 @@ final class AutoRefreshTest extends AutoRefreshTestCase
         self::assertTrue((new \ReflectionClass($address))->isUninitializedLazyObject($address));
         self::assertTrue((new \ReflectionClass($category))->isUninitializedLazyObject($category));
 
-        self::assertInstanceOf(Proxy::class, $contact->getAddress());
-        self::assertInstanceOf(Proxy::class, $contact->getCategory());
-
         self::assertNotSame($address, $contact->getAddress());
         self::assertNotSame($category, $contact->getCategory());
 
         self::assertSame($address->getCity(), $contact->getAddress()->getCity());
-        self::assertSame($category->getName(), $contact->getCategory()->getName());
+        self::assertSame($category->getName(), $contact->getCategory()?->getName());
 
         self::assertSame('foo', $address->getCity());
         self::assertSame('foo', $category->getName());
