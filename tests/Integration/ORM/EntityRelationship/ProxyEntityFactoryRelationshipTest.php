@@ -19,6 +19,7 @@ use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\IgnorePhpunitWarnings;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\Test;
 use Zenstruck\Assert;
@@ -44,6 +45,7 @@ final class ProxyEntityFactoryRelationshipTest extends EntityFactoryRelationship
     #[DataProvider('provideCascadeRelationshipsCombinations')]
     #[UsingRelationships(Contact::class, ['category'])]
     #[IgnorePhpunitWarnings(EdgeCasesRelationshipTest::DATA_PROVIDER_WARNING_REGEX)]
+    #[RequiresPhp('<8.4')]
     public function doctrine_proxies_are_converted_to_foundry_proxies(): void
     {
         static::contactFactory()->create(['category' => static::categoryFactory()]);

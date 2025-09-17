@@ -19,6 +19,7 @@ use Zenstruck\Foundry\Exception\PersistenceNotAvailable;
 use Zenstruck\Foundry\InMemory\CannotEnableInMemory;
 use Zenstruck\Foundry\InMemory\InMemoryRepositoryRegistry;
 use Zenstruck\Foundry\Persistence\PersistenceManager;
+use Zenstruck\Foundry\Persistence\Proxy\PersistedObjectsTracker;
 
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
@@ -60,6 +61,8 @@ final class Configuration
         public readonly bool $flushOnce = false,
         ?int $forcedFakerSeed = null,
         public readonly ?InMemoryRepositoryRegistry $inMemoryRepositoryRegistry = null,
+        public readonly ?PersistedObjectsTracker $persistedObjectsTracker = null,
+        private readonly bool $enableAutoRefreshWithLazyObjects = false,
     ) {
         if (null === self::$instance) {
             $this->faker->seed(self::fakerSeed($forcedFakerSeed));
@@ -127,6 +130,7 @@ final class Configuration
     /** @param \Closure():self|self $configuration */
     public static function boot(\Closure|self $configuration): void
     {
+        PersistedObjectsTracker::reset();
         self::$instance = $configuration;
     }
 
@@ -139,6 +143,7 @@ final class Configuration
 
     public static function shutdown(): void
     {
+        PersistedObjectsTracker::reset();
         StoryRegistry::reset();
         self::$instance = null;
     }
@@ -161,5 +166,29 @@ final class Configuration
     public function isInMemoryEnabled(): bool
     {
         return $this->inMemory;
+    }
+
+    public static function autoRefreshWithLazyObjectsIsEnabled(): bool
+    {
+        return self::isBooted() && self::instance()->enableAutoRefreshWithLazyObjects;
+    }
+
+    public static function triggerProxyDeprecation(?string $additionalMessage = null): void
+    {
+        if (\PHP_VERSION_ID < 80400) {
+            return;
+        }
+
+        $message = <<<DEPRECATION
+            Proxy usage is deprecated in PHP 8.4. You should extend directly PersistentObjectFactory in your factories.
+            Foundry now leverages the native PHP lazy system to auto-refresh objects (it can be enabled with "zenstruck_foundry.enable_auto_refresh_with_lazy_objects" configuration).
+            See https://github.com/zenstruck/foundry/blob/1.x/UPGRADE-2.7.md to upgrade.
+            DEPRECATION;
+
+        if ($additionalMessage) {
+            $message = "{$additionalMessage}\n{$message}";
+        }
+
+        trigger_deprecation('zenstruck/foundry', '2.7', $message);
     }
 }

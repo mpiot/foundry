@@ -62,7 +62,32 @@ final class ProxyGenerator
                 throw new \LogicException('Cannot access to a persisted object from a data provider.');
             }
 
-            return unproxy($factory->create($attributes));
+            return self::unwrap($factory->create($attributes));
+        });
+    }
+
+    /**
+     * @template T of object
+     *
+     * @param PersistentObjectFactory<T> $factory
+     * @phpstan-param Attributes $attributes
+     *
+     * @return T
+     */
+    public static function wrapFactoryNativeProxy(PersistentObjectFactory $factory, callable|array $attributes): object
+    {
+        if (\PHP_VERSION_ID < 80400) {
+            throw new \LogicException('Native proxy generation requires PHP 8.4 or higher.');
+        }
+
+        $reflector = new \ReflectionClass($factory::class());
+
+        return $reflector->newLazyProxy(static function() use ($factory, $attributes) { // @phpstan-ignore-line
+            if (Configuration::instance()->inADataProvider() && $factory->isPersisting()) {
+                throw new \LogicException('Cannot access to a persisted object from a data provider.');
+            }
+
+            return $factory->create($attributes);
         });
     }
 
@@ -85,6 +110,14 @@ final class ProxyGenerator
 
         if ($what instanceof Proxy) {
             return $what->_real($withAutoRefresh); // @phpstan-ignore return.type
+        }
+
+        if (
+            \PHP_VERSION_ID >= 80400
+            && \is_object($what)
+            && ($reflector = new \ReflectionClass($what))->isUninitializedLazyObject($what)
+        ) {
+            return $reflector->initializeLazyObject($what);
         }
 
         return $what;

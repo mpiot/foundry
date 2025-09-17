@@ -70,6 +70,11 @@ abstract class FoundryTestKernel extends Kernel
         return (bool) \getenv('USE_DAMA_DOCTRINE_TEST_BUNDLE');
     }
 
+    public static function usePHP84LazyObjects(): bool
+    {
+        return \PHP_VERSION_ID >= 80400 && \getenv('USE_PHP_84_LAZY_OBJECTS');
+    }
+
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader): void
     {
         $frameworkConfiguration = [
@@ -132,6 +137,10 @@ abstract class FoundryTestKernel extends Kernel
                     'controller_resolver' => ['auto_mapping' => false],
                 ],
             ]);
+
+            if (\PHP_VERSION_ID >= 80400) {
+                $c->loadFromExtension('doctrine', ['orm' => ['enable_native_lazy_objects' => true]]);
+            }
 
             $c->register(ChangeCascadePersistOnLoadClassMetadataListener::class)
                 ->setAutowired(true)

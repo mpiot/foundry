@@ -51,6 +51,15 @@ abstract class PersistentObjectFactory extends ObjectFactory
 
     private bool $isRootFactory = true;
 
+    private bool $autorefreshEnabled = false;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->autorefreshEnabled = Configuration::autoRefreshWithLazyObjectsIsEnabled();
+    }
+
     /**
      * @phpstan-param mixed|Parameters $criteriaOrId
      *
@@ -229,6 +238,16 @@ abstract class PersistentObjectFactory extends ObjectFactory
      */
     public function create(callable|array $attributes = []): object
     {
+        $configuration = Configuration::instance();
+
+        if ($configuration->inADataProvider()
+            && \PHP_VERSION_ID >= 80400
+            && $this->isPersisting()
+            && !$this instanceof PersistentProxyObjectFactory
+        ) {
+            return ProxyGenerator::wrapFactoryNativeProxy($this, $attributes);
+        }
+
         $object = parent::create($attributes);
 
         foreach ($this->tempAfterInstantiate as $callback) {
@@ -242,8 +261,6 @@ abstract class PersistentObjectFactory extends ObjectFactory
         if (PersistMode::PERSIST !== $this->persistMode()) {
             return $object;
         }
-
-        $configuration = Configuration::instance();
 
         if ($configuration->flushOnce && !$this->isRootFactory) {
             return $object;
@@ -270,6 +287,30 @@ abstract class PersistentObjectFactory extends ObjectFactory
     {
         $clone = clone $this;
         $clone->persist = PersistMode::WITHOUT_PERSISTING;
+
+        return $clone;
+    }
+
+    final public function withAutorefresh(): static
+    {
+        if (\PHP_VERSION_ID < 80400) {
+            throw new \LogicException('Auto-refresh requires PHP 8.4 or higher.');
+        }
+
+        $clone = clone $this;
+        $clone->autorefreshEnabled = true;
+
+        return $clone;
+    }
+
+    final public function withoutAutorefresh(): static
+    {
+        if (\PHP_VERSION_ID < 80400) {
+            throw new \LogicException('Auto-refresh requires PHP 8.4 or higher.');
+        }
+
+        $clone = clone $this;
+        $clone->autorefreshEnabled = false;
 
         return $clone;
     }
@@ -323,7 +364,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
     protected function normalizeParameter(string $field, mixed $value): mixed
     {
         if (!Configuration::instance()->isPersistenceAvailable()) {
-            return unproxy(parent::normalizeParameter($field, $value));
+            return ProxyGenerator::unwrap(parent::normalizeParameter($field, $value));
         }
 
         if ($value instanceof self) {
@@ -350,13 +391,13 @@ abstract class PersistentObjectFactory extends ObjectFactory
                     $this->tempAfterInstantiate[] = static function(object $object) use ($value, $inverseField, $field) {
                         $inverseObject = $value->create([$inverseField => $object]);
 
-                        set($object, $field, unproxy($inverseObject, withAutoRefresh: false));
+                        set($object, $field, ProxyGenerator::unwrap($inverseObject, withAutoRefresh: false));
                     };
 
                     // we're using "force" here to avoid a potential type check in a setter
                     return force(null);
                 } elseif (($inverseFieldType = (new \ReflectionClass($value::class()))->getProperty($inverseField)->getType())?->allowsNull()) {
-                    $inverseObject = unproxy(
+                    $inverseObject = ProxyGenerator::unwrap(
                         // we're using "force" here to avoid a potential type check in a setter
                         $value->create([$inverseField => force(null)]),
                         withAutoRefresh: false
@@ -375,7 +416,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
             }
         }
 
-        return unproxy(parent::normalizeParameter($field, $value), withAutoRefresh: false);
+        return ProxyGenerator::unwrap(parent::normalizeParameter($field, $value), withAutoRefresh: false);
     }
 
     protected function normalizeCollection(string $field, FactoryCollection $collection): array
@@ -399,7 +440,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
                     ->withPersistMode($this->isPersisting() ? PersistMode::NO_PERSIST_BUT_SCHEDULE_FOR_INSERT : PersistMode::WITHOUT_PERSISTING)
                     ->create([$inverseField => $object]);
 
-                $inverseObjects = unproxy($inverseObjects, withAutoRefresh: false);
+                $inverseObjects = ProxyGenerator::unwrap($inverseObjects, withAutoRefresh: false);
 
                 // if the collection is indexed by a field, index the array
                 if ($inverseRelationshipMetadata->collectionIndexedBy) {
@@ -428,7 +469,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
     {
         $configuration = Configuration::instance();
 
-        $object = unproxy($object, withAutoRefresh: false);
+        $object = ProxyGenerator::unwrap($object, withAutoRefresh: false);
 
         if (!$configuration->isPersistenceAvailable()) {
             return $object;
@@ -468,7 +509,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
 
         try {
             return $configuration->persistence()->refresh($object);
-        } catch (RefreshObjectFailed|VarExportLogicException) {
+        } catch (RefreshObjectFailed|VarExportLogicException) { // @phpstan-ignore catch.neverThrown (thrown by var exporter)
             return $object;
         }
     }
@@ -481,6 +522,13 @@ abstract class PersistentObjectFactory extends ObjectFactory
                 static function(object $object, array $parameters, PersistentObjectFactory $factoryUsed): void {
                     if (!$factoryUsed->isPersisting()) {
                         return;
+                    }
+
+                    if (
+                        $factoryUsed->autorefreshEnabled
+                        && !$factoryUsed instanceof PersistentProxyObjectFactory
+                    ) {
+                        Configuration::instance()->persistedObjectsTracker?->add($object);
                     }
 
                     $afterPersistCallbacks = [];

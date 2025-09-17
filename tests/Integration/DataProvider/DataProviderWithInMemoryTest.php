@@ -21,6 +21,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Zenstruck\Foundry\InMemory\AsInMemoryTest;
 use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
+use Zenstruck\Foundry\Persistence\ProxyGenerator;
 use Zenstruck\Foundry\PHPUnit\FoundryExtension;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -29,8 +30,6 @@ use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\Contact\ContactFactory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\Contact\ProxyContactFactory;
 use Zenstruck\Foundry\Tests\Fixture\InMemory\InMemoryContactRepository;
 use Zenstruck\Foundry\Tests\Integration\RequiresORM;
-
-use function Zenstruck\Foundry\Persistence\unproxy;
 
 /**
  * @author Nicolas PHILIPPE <nikophil@gmail.com>
@@ -69,7 +68,7 @@ final class DataProviderWithInMemoryTest extends KernelTestCase
 
         $contact = $factory->create();
 
-        self::assertSame([unproxy($contact)], $this->contactRepository->_all());
+        self::assertSame([ProxyGenerator::unwrap($contact)], $this->contactRepository->_all());
 
         self::assertSame(0, $this->entityManager->getRepository(Contact::class)->count());
     }
@@ -87,7 +86,7 @@ final class DataProviderWithInMemoryTest extends KernelTestCase
     {
         self::assertInstanceOf(Contact::class, $contact);
 
-        self::assertSame([unproxy($contact)], $this->contactRepository->_all());
+        self::assertSame([ProxyGenerator::unwrap($contact)], $this->contactRepository->_all());
 
         self::assertSame(0, $this->entityManager->getRepository(Contact::class)->count());
     }
