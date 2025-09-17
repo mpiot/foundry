@@ -15,7 +15,6 @@ namespace Zenstruck\Foundry\Tests\Integration\DataProvider;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
-use PHPUnit\Framework\Attributes\RequiresEnvironmentVariable;
 use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\RequiresPhpunitExtension;
@@ -113,7 +112,8 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
     #[Test]
     #[DataProvider('throwsExceptionWhenCreatingObjectInDataProvider')]
     #[RequiresPhp('<8.4')]
-    public function it_throws_when_creating_persisted_object_with_non_proxy_factory_in_data_provider_without_php_84(?\Throwable $e,): void {
+    public function it_throws_when_creating_persisted_object_with_non_proxy_factory_in_data_provider_without_php_84(?\Throwable $e): void
+    {
         self::assertInstanceOf(\LogicException::class, $e);
         self::assertStringStartsWith(
             'Cannot create object in a data provider for non-proxy factories.',
