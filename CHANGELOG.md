@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## [v2.7.0](https://github.com/zenstruck/foundry/releases/tag/v2.7.0)
+
+September 17th, 2025 - [v2.6.3...v2.7.0](https://github.com/zenstruck/foundry/compare/v2.6.3...v2.7.0)
+
+* cd1b31a docs: add "Troubleshooting" section in upgrade guide (#943) by @nikophil
+* a83c249 feat: enable auto-refresh at factory level (#970) by @nikophil
+* 32e9868 fix: few fixes after #972 (#943) by @nikophil
+* 47b0d79 feat: use ghost objects for auto refresh mechanism (#967) (#943) by @nikophil
+* 3a131ef minor: improve deprecation message (#943) by @nikophil
+* 30df79d feat: auto-refresh objects from RepositoryDecorator (#943) by @nikophil
+* f675c37 minor: use ProxyGenerator::unwrap() instead of unproxy() and prevent deprec (#943) by @nikophil
+* 9d04094 minor: remove PersistedObjectsTracker::reset() call in tear down (#943) by @nikophil
+* 3e23fda refactor(maker): deprecate --with-phpdocs for PHP >=8.4 (#952) (#943) by @nikophil
+* 61cabac docs: create upgrade guide to 2.7 and document auto-refresh (#951) (#943) by @nikophil
+* fe6374b feat: auto refresh with lazy object php84 enabled by config (#950) (#943) by @nikophil
+* 9717676 feat: Rector rules to help migrating away from proxy (#941) (#943) by @nikophil
+* 35e8da6 feat: use native proxies for object creation in data providers (#943) by @nikophil
+* 02f85f2 feat: create proxy system with PHP 8.4 lazy proxies (#943) by @nikophil
+
 ## [v2.6.3](https://github.com/zenstruck/foundry/releases/tag/v2.6.3)
 
 August 28th, 2025 - [v2.6.2...v2.6.3](https://github.com/zenstruck/foundry/compare/v2.6.2...v2.6.3)
