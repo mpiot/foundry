@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [v2.7.1](https://github.com/zenstruck/foundry/releases/tag/v2.7.1)
+
+September 24th, 2025 - [v2.7.0...v2.7.1](https://github.com/zenstruck/foundry/compare/v2.7.0...v2.7.1)
+
+* 90866d2 fix(autorefresh): return fresh data from RepositoryDecorator methods (#983) by @nikophil
+* 485746e fix(autorefresh): don't use clone to get the id values (#980) by @nikophil
+* 21b659b chore: fix issue template (#982) by @nikophil
+* 5d02ac6 Fix link to UPGRADE-2.7.md file (#978) by @Kocal
+
 ## [v2.7.0](https://github.com/zenstruck/foundry/releases/tag/v2.7.0)
 
 September 17th, 2025 - [v2.6.3...v2.7.0](https://github.com/zenstruck/foundry/compare/v2.6.3...v2.7.0)
