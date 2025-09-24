@@ -422,8 +422,8 @@ final class PersistenceManager
     /**
      * @template T of object
      *
-     * @param class-string<T> $class
-     * @param array<string, mixed> $criteria
+     * @param class-string<T>            $class
+     * @param array<string, mixed>       $criteria
      * @param array<string, string>|null $orderBy
      * @phpstan-param array<string, 'asc'|'desc'|'ASC'|'DESC'>|null $orderBy
      *

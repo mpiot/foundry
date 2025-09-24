@@ -103,7 +103,7 @@ abstract class AbstractORMPersistenceStrategy extends PersistenceStrategy
         $qb = $this->objectManagerFor($class)->getRepository($class)->createQueryBuilder('o');
 
         foreach ($criteria as $field => $value) {
-            $paramName = str_replace('.', '_', $field);
+            $paramName = \str_replace('.', '_', $field);
             $qb->andWhere('o.'.$field.' = :'.$paramName);
             $qb->setParameter($paramName, $value);
         }

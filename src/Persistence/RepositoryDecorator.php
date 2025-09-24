@@ -125,9 +125,9 @@ class RepositoryDecorator implements ObjectRepository, \IteratorAggregate, \Coun
 
     /**
      * @param array<string, string>|null $orderBy
+     * @param ?int                       $limit
+     * @param ?int                       $offset
      * @phpstan-param array<string, 'asc'|'desc'|'ASC'|'DESC'>|null $orderBy
-     * @param ?int $limit
-     * @param ?int $offset
      *
      * @return list<T>
      */

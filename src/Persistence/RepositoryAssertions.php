@@ -115,9 +115,9 @@ final class RepositoryAssertions
     {
         Assert::that($this->repository->count($criteria))
             ->isGreaterThan(0, $message, [
-            'entity' => $this->repository->getClassName(),
-            'criteria' => $criteria,
-        ]);
+                'entity' => $this->repository->getClassName(),
+                'criteria' => $criteria,
+            ]);
 
         return $this;
     }
