@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.7.2](https://github.com/zenstruck/foundry/releases/tag/v2.7.2)
+
+September 25th, 2025 - [v2.7.1...v2.7.2](https://github.com/zenstruck/foundry/compare/v2.7.1...v2.7.2)
+
+* 97b60b6 fix: applyStateMethod should not be internal (#988) by @nikophil
+
 ## [v2.7.1](https://github.com/zenstruck/foundry/releases/tag/v2.7.1)
 
 September 24th, 2025 - [v2.7.0...v2.7.1](https://github.com/zenstruck/foundry/compare/v2.7.0...v2.7.1)
