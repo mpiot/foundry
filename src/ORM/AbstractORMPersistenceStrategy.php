@@ -104,7 +104,7 @@ abstract class AbstractORMPersistenceStrategy extends PersistenceStrategy
 
         foreach ($criteria as $field => $value) {
             $paramName = \str_replace('.', '_', $field);
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 $qb->andWhere("o.{$field} IN(:{$paramName})");
             } else {
                 $qb->andWhere("o.{$field} = :{$paramName}");
