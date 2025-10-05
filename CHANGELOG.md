@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [v2.7.3](https://github.com/zenstruck/foundry/releases/tag/v2.7.3)
+
+October 5th, 2025 - [v2.7.2...v2.7.3](https://github.com/zenstruck/foundry/compare/v2.7.2...v2.7.3)
+
+* 45214f7 fix: revert adding PersistManager::findBy() (#996) by @nikophil
+* b36b9b3 chore: upgrade PHPStan (#997) by @nikophil
+* 55f2689 fix: edge case with Doctrine Middleware & early kernel boot (#993) by @HypeMC
+* 9fa21b3 fix(repository): use IN() when an array is passed (#995) by @nikophil
+* cad1466 fix: handle readonly when refreshing from repository decorator (#989) by @nikophil
+* b4b2ffe fix: Enhanced random method with additional safety check. (#991) by @sofwar
+
 ## [v2.7.2](https://github.com/zenstruck/foundry/releases/tag/v2.7.2)
 
 September 25th, 2025 - [v2.7.1...v2.7.2](https://github.com/zenstruck/foundry/compare/v2.7.1...v2.7.2)
