@@ -37,7 +37,8 @@ class InverseSide
     #[ORM\OneToMany(targetEntity: OwningSide::class, mappedBy: 'inverseSide', cascade: ['persist'])]
     public Collection $owningSides;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->owningSides = new ArrayCollection();
     }
 }

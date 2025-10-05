@@ -13,7 +13,6 @@ namespace Zenstruck\Foundry\ORM;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\MappingException as ORMMappingException;
-use Doctrine\ORM\Query;
 use Doctrine\Persistence\Mapping\MappingException;
 use Zenstruck\Foundry\Persistence\PersistenceStrategy;
 
