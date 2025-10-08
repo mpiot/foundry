@@ -51,7 +51,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
 
     private bool $isRootFactory = true;
 
-    private bool|null $autorefreshEnabled = null;
+    private ?bool $autorefreshEnabled = null;
 
     /**
      * @phpstan-param mixed|Parameters $criteriaOrId
