@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.7.4](https://github.com/zenstruck/foundry/releases/tag/v2.7.4)
+
+October 8th, 2025 - [v2.7.3...v2.7.4](https://github.com/zenstruck/foundry/compare/v2.7.3...v2.7.4)
+
+* 9489e83 fix: 🐛 use isser instead of constructor to apply autorefresh setting to Factory (#998) by @ttskch
+
 ## [v2.7.3](https://github.com/zenstruck/foundry/releases/tag/v2.7.3)
 
 October 5th, 2025 - [v2.7.2...v2.7.3](https://github.com/zenstruck/foundry/compare/v2.7.2...v2.7.3)
