@@ -531,29 +531,25 @@ final class MakeFactoryTest extends MakerTestCase
      */
     private function rrmdir(string $dir): void
     {
-        if (is_dir($dir))
-        {
-            $objects = scandir($dir);
+        if (\is_dir($dir)) {
+            $objects = \scandir($dir);
 
-            if ($objects === false)
-            {
+            if (false === $objects) {
                 return;
             }
 
-            foreach ($objects as $object)
-            {
-                if ($object !== '.' && $object !== '..')
-                {
-                    if (filetype($dir.'/'.$object) === 'dir') {
+            foreach ($objects as $object) {
+                if ('.' !== $object && '..' !== $object) {
+                    if ('dir' === \filetype($dir.'/'.$object)) {
                         $this->rrmdir($dir.'/'.$object);
                     } else {
-                        unlink($dir.'/'.$object);
+                        \unlink($dir.'/'.$object);
                     }
                 }
             }
 
-            reset($objects);
-            rmdir($dir);
+            \reset($objects);
+            \rmdir($dir);
         }
     }
 }
