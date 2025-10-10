@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [v2.7.5](https://github.com/zenstruck/foundry/releases/tag/v2.7.5)
+
+October 10th, 2025 - [v2.7.4...v2.7.5](https://github.com/zenstruck/foundry/compare/v2.7.4...v2.7.5)
+
+* 81eacf5 docs: add a note about using `make:factory --test` (#1000) by @ttskch
+* 660942d [Rector] Add rector to require-dev and use single autoload vendor for run PHPUnit (#1001) by @samsonasik
+* f06d58d fix: using `refresh_all()` with `flush_after()` (#999) by @HypeMC
+
 ## [v2.7.4](https://github.com/zenstruck/foundry/releases/tag/v2.7.4)
 
 October 8th, 2025 - [v2.7.3...v2.7.4](https://github.com/zenstruck/foundry/compare/v2.7.3...v2.7.4)
