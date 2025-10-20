@@ -40,7 +40,6 @@ final class CreateContact
 
         $entityManager->flush();
 
-
         return new Response();
     }
 }

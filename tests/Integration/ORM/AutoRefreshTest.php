@@ -36,7 +36,6 @@ use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\GenericEntityFactory;
 use Zenstruck\Foundry\Tests\Integration\Persistence\AutoRefreshTestCase;
 use Zenstruck\Foundry\Tests\Integration\RequiresORM;
 
-use function Zenstruck\Foundry\Persistence\assert_persisted;
 use function Zenstruck\Foundry\Persistence\persistent_factory;
 use function Zenstruck\Foundry\Persistence\refresh_all;
 
