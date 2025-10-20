@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [v2.7.6](https://github.com/zenstruck/foundry/releases/tag/v2.7.6)
+
+October 20th, 2025 - [v2.7.5...v2.7.6](https://github.com/zenstruck/foundry/compare/v2.7.5...v2.7.6)
+
+* 95d2a96 fix: autorefresh should work after kernel shutdown (#1011) by @nikophil
+* 0ea8430 tests: ensure OneToMany relationships are refreshed (#1010) by @nikophil
+* 3c6faff fix: RepositoryAssertion::exist() $criteria should allow mixed (#1007) by @nikophil
+* 81cc97d minor: accept as story any child of Story (#1006) by @alsciende
+* e99f3b0 chore: run rector CI with PHPUnit 12 (#1002) by @nikophil
+
 ## [v2.7.5](https://github.com/zenstruck/foundry/releases/tag/v2.7.5)
 
 October 10th, 2025 - [v2.7.4...v2.7.5](https://github.com/zenstruck/foundry/compare/v2.7.4...v2.7.5)
