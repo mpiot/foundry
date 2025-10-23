@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.7.7](https://github.com/zenstruck/foundry/releases/tag/v2.7.7)
+
+October 23rd, 2025 - [v2.7.6...v2.7.7](https://github.com/zenstruck/foundry/compare/v2.7.6...v2.7.7)
+
+* 7766a85 fix: only use PersistedObjectsTracker when auto-refresh is enabled (#1013) by @nikophil
+
 ## [v2.7.6](https://github.com/zenstruck/foundry/releases/tag/v2.7.6)
 
 October 20th, 2025 - [v2.7.5...v2.7.6](https://github.com/zenstruck/foundry/compare/v2.7.5...v2.7.6)
