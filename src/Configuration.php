@@ -142,7 +142,7 @@ final class Configuration
 
     /**
      * /!\ Until PHPUnit 9 support is not dropped, this method MUST NOT call Configuration::instance()
-     * Otherwise, it will reboot the kernel, leading to complex bugs
+     * Otherwise, it will reboot the kernel, leading to complex bugs.
      */
     public static function shutdown(): void
     {
