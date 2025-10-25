@@ -24,6 +24,5 @@ class DummyPersistentObject
 
     public function doSomething(): void
     {
-
     }
 }

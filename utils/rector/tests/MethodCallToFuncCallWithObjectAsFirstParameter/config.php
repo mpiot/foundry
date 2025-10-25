@@ -16,7 +16,6 @@ use Zenstruck\Foundry\Utils\Rector\MethodCallToFuncCallWithObjectAsFirstParamete
 use Zenstruck\Foundry\Utils\Rector\MethodCallToFuncCallWithObjectAsFirstParameter\MethodCallToFuncCallWithObjectAsFirstParameterRector;
 
 return static function(RectorConfig $rectorConfig): void {
-
     $rectorConfig->ruleWithConfiguration(
         MethodCallToFuncCallWithObjectAsFirstParameterRector::class,
         [

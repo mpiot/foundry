@@ -15,7 +15,7 @@ use Rector\Config\RectorConfig;
 use Zenstruck\Foundry\Utils\Rector\RemoveFunctionCall\RemoveFunctionCall;
 use Zenstruck\Foundry\Utils\Rector\RemoveFunctionCall\RemoveFunctionCallRector;
 
-return static function (RectorConfig $rectorConfig): void {
+return static function(RectorConfig $rectorConfig): void {
     $rectorConfig->ruleWithConfiguration(
         RemoveFunctionCallRector::class,
         [

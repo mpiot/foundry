@@ -20,13 +20,13 @@ use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
  */
 class DummyPersistentProxyFactory extends PersistentProxyObjectFactory
 {
-    protected function defaults(): array
-    {
-        return [];
-    }
-
     public static function class(): string
     {
         return DummyPersistentObject::class;
+    }
+
+    protected function defaults(): array
+    {
+        return [];
     }
 }

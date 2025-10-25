@@ -19,6 +19,9 @@ use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 
 final class RemoveFunctionCallTest extends AbstractRectorTestCase
 {
+    /**
+     * @test
+     */
     #[Test]
     #[DataProvider('provideData')]
     public function test(string $filePath): void

@@ -19,16 +19,16 @@ use Rector\Rector\AbstractRector;
 final class RemoveWithoutAutorefreshCallRector extends AbstractRector
 {
     /** @return array<class-string<Node>> */
-    public function getNodeTypes() : array
+    public function getNodeTypes(): array
     {
         return [Node\Stmt\Expression::class];
     }
 
     /**
-     * @param Node\Stmt\Expression $node
+     * @param  Node\Stmt\Expression                       $node
      * @return Node\Stmt\Expression|array<Node\Stmt>|null
      */
-    public function refactor(Node $node) : Node\Stmt\Expression|null|array
+    public function refactor(Node $node): Node\Stmt\Expression|array|null
     {
         $method = $node->expr;
 

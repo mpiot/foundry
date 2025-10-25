@@ -12,10 +12,9 @@ declare(strict_types=1);
  */
 
 use Rector\Config\RectorConfig;
-use Zenstruck\Foundry\Utils\Rector\ChangeFactoryBaseClassRector;
 use Zenstruck\Foundry\Utils\Rector\ChangeProxyReturnTypesRector;
 
-return static function (RectorConfig $rectorConfig): void {
+return static function(RectorConfig $rectorConfig): void {
     $rectorConfig->rules(
         [ChangeProxyReturnTypesRector::class],
     );

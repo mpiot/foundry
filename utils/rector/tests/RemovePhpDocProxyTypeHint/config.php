@@ -12,12 +12,8 @@ declare(strict_types=1);
  */
 
 use Rector\Config\RectorConfig;
-use Zenstruck\Foundry\Persistence\Proxy;
-use Zenstruck\Foundry\Utils\Rector\RemoveMethodCall\RemoveMethodCall;
-use Zenstruck\Foundry\Utils\Rector\RemoveMethodCall\RemoveMethodCallRector;
 use Zenstruck\Foundry\Utils\Rector\RemovePhpDocProxyTypeHintRector;
 
 return static function(RectorConfig $rectorConfig): void {
-
     $rectorConfig->rule(RemovePhpDocProxyTypeHintRector::class);
 };
