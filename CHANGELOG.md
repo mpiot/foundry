@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [v2.7.8](https://github.com/zenstruck/foundry/releases/tag/v2.7.8)
+
+November 5th, 2025 - [v2.7.7...v2.7.8](https://github.com/zenstruck/foundry/compare/v2.7.7...v2.7.8)
+
+* 728c8f8 minor: Add default value to Factory::attributes (#1026) by @VincentLanglet
+* 0fe1017 tests: ensure Doctrine lifecycle works (#1020) by @nikophil
+* 1247b0b chore: remove paratest from dev dependencies (#1023) by @nikophil
+* 11355a9 chore: add concurrency for all workflows (#1019) by @nikophil
+* fed6e4a chore: fix rector with bamarni (#1018) by @nikophil
+* 545cf18 chore: split CIs and add concurrency (#1017) by @nikophil
+* 17796f2 chore: add bc-check to CI (#1016) by @nikophil
+* b8ced9b chore: disable sync template for cs config (#1015) by @nikophil
+* b802463 chore: some housekeeping (#1014) by @nikophil
+
 ## [v2.7.7](https://github.com/zenstruck/foundry/releases/tag/v2.7.7)
 
 October 23rd, 2025 - [v2.7.6...v2.7.7](https://github.com/zenstruck/foundry/compare/v2.7.6...v2.7.7)
