@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.7.9](https://github.com/zenstruck/foundry/releases/tag/v2.7.9)
+
+November 7th, 2025 - [v2.7.8...v2.7.9](https://github.com/zenstruck/foundry/compare/v2.7.8...v2.7.9)
+
+* 41ab3ae fix: auto-refresh with Mongo after DoctrineMongoDBBundle 5.4.3 (#1030) by @nikophil
+
 ## [v2.7.8](https://github.com/zenstruck/foundry/releases/tag/v2.7.8)
 
 November 5th, 2025 - [v2.7.7...v2.7.8](https://github.com/zenstruck/foundry/compare/v2.7.7...v2.7.8)
