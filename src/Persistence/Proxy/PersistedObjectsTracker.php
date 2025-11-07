@@ -51,9 +51,9 @@ final class PersistedObjectsTracker
     public function updateIds(): void
     {
         foreach (self::$buffer as $object => $id) {
-            if (is_array($id)) {
+            if (\is_array($id)) {
                 // in mongodb, id can be an array with null values, which is not a valid id and must be updated
-                $id = array_filter($id);
+                $id = \array_filter($id);
             }
 
             if ($id) {
