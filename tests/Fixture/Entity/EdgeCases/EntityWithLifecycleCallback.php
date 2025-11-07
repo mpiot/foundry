@@ -33,7 +33,7 @@ class EntityWithLifecycleCallback
     {
         $this->prop1 = 'pre-persist';
 
-        if ($this->prop2 === null) {
+        if (null === $this->prop2) {
             throw new \LogicException('prop2 should not be empty');
         }
     }

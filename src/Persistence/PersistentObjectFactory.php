@@ -332,7 +332,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
 
         $afterPersist[$priority] ??= [];
         $afterPersist[$priority][] = $callback;
-        krsort($afterPersist);
+        \krsort($afterPersist);
 
         $clone->afterPersist = $afterPersist;
 
@@ -535,7 +535,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
 
                     $afterPersistCallbacks = [];
 
-                    foreach (array_merge(...$factoryUsed->afterPersist) as $afterPersist) {
+                    foreach (\array_merge(...$factoryUsed->afterPersist) as $afterPersist) {
                         $afterPersistCallbacks[] = static function() use ($object, $afterPersist, $parameters, $factoryUsed): void {
                             $afterPersist($object, $parameters, $factoryUsed);
                         };

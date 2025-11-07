@@ -49,7 +49,7 @@ abstract class ObjectFactory extends Factory
     {
         $parameters = $this->normalizeAttributes($attributes);
 
-        foreach (array_merge(...$this->beforeInstantiate) as $hook) {
+        foreach (\array_merge(...$this->beforeInstantiate) as $hook) {
             $parameters = $hook($parameters, static::class(), $this);
 
             if (!\is_array($parameters)) {
@@ -62,7 +62,7 @@ abstract class ObjectFactory extends Factory
         /** @var T $object */
         $object = $instantiator($parameters, static::class());
 
-        foreach (array_merge(...$this->afterInstantiate) as $hook) {
+        foreach (\array_merge(...$this->afterInstantiate) as $hook) {
             $hook($object, $parameters, $this);
         }
 
@@ -94,7 +94,7 @@ abstract class ObjectFactory extends Factory
 
         $beforeInstantiate[$priority] ??= [];
         $beforeInstantiate[$priority][] = $callback;
-        krsort($beforeInstantiate);
+        \krsort($beforeInstantiate);
 
         $clone->beforeInstantiate = $beforeInstantiate;
 
@@ -114,7 +114,7 @@ abstract class ObjectFactory extends Factory
 
         $afterInstantiate[$priority] ??= [];
         $afterInstantiate[$priority][] = $callback;
-        krsort($afterInstantiate);
+        \krsort($afterInstantiate);
 
         $clone->afterInstantiate = $afterInstantiate;
 
