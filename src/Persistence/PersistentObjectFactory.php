@@ -21,6 +21,7 @@ use Zenstruck\Foundry\Factory;
 use Zenstruck\Foundry\FactoryCollection;
 use Zenstruck\Foundry\Object\Hydrator;
 use Zenstruck\Foundry\ObjectFactory;
+use Zenstruck\Foundry\Persistence\Event\AfterPersist;
 use Zenstruck\Foundry\Persistence\Exception\NotEnoughObjects;
 use Zenstruck\Foundry\Persistence\Exception\RefreshObjectFailed;
 use Zenstruck\Foundry\Persistence\Relationship\ManyToOneRelationship;
@@ -45,7 +46,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
 
     private PersistMode $persist = PersistMode::PERSIST;
 
-    /** @phpstan-var array<int, list<callable(T, Parameters, static):void>> */
+    /** @phpstan-var array<int, list<callable(T, Parameters, static):void|callable(T, Parameters, static):bool>> */
     private array $afterPersist = [];
 
     /** @var list<callable(T):void> */
@@ -322,7 +323,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
     }
 
     /**
-     * @phpstan-param callable(T, Parameters, static):void $callback
+     * @phpstan-param callable(T, Parameters, static):void|callable(T, Parameters, static):bool $callback return value tells if a flush should be performed after the callback
      */
     final public function afterPersist(callable $callback, int $priority = 0): static
     {
@@ -516,10 +517,13 @@ abstract class PersistentObjectFactory extends ObjectFactory
         }
     }
 
+    /**
+     * @internal
+     */
     final protected function initializeInternal(): static
     {
         // Schedule any new object for insert right after instantiation
-        return parent::initializeInternal()
+        $factory = parent::initializeInternal()
             ->afterInstantiate(
                 static function(object $object, array $parameters, PersistentObjectFactory $factoryUsed): void {
                     if (!$factoryUsed->isPersisting()) {
@@ -536,8 +540,9 @@ abstract class PersistentObjectFactory extends ObjectFactory
                     $afterPersistCallbacks = [];
 
                     foreach (\array_merge(...$factoryUsed->afterPersist) as $afterPersist) {
-                        $afterPersistCallbacks[] = static function() use ($object, $afterPersist, $parameters, $factoryUsed): void {
-                            $afterPersist($object, $parameters, $factoryUsed);
+                        $afterPersistCallbacks[] = static function() use ($object, $afterPersist, $parameters, $factoryUsed): bool {
+                            // this condition is needed to avoid BC breaks: only avoid flush if the callback explicitly returns false
+                            return !($afterPersist($object, $parameters, $factoryUsed) === false);
                         };
                     }
 
@@ -546,6 +551,20 @@ abstract class PersistentObjectFactory extends ObjectFactory
                 self::PRIORITY_SCHEDULE_FOR_INSERT
             )
         ;
+
+        if (!Configuration::isBooted() || !Configuration::instance()->hasEventDispatcher()) {
+            return $factory;
+        }
+
+        return $factory->afterPersist(
+            static function(object $object, array $parameters, self $factoryUsed): bool {
+                Configuration::instance()->eventDispatcher()->dispatch(
+                    new AfterPersist($object, $parameters, $factoryUsed)
+                );
+
+                return false; // don't perform a flush after the hook
+            }
+        );
     }
 
     private function isAutorefreshEnabled(): bool
