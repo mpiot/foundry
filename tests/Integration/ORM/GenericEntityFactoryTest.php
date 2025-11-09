@@ -80,7 +80,7 @@ final class GenericEntityFactoryTest extends GenericFactoryTestCase
             function(GenericModel $object) {
                 $object->setProp1('bar');
             },
-            'bar'
+            'bar',
         ];
 
         yield 'return true will flush' => [
@@ -89,7 +89,7 @@ final class GenericEntityFactoryTest extends GenericFactoryTestCase
 
                 return true;
             },
-            'bar'
+            'bar',
         ];
 
         yield 'return something else than false will flush' => [
@@ -98,7 +98,7 @@ final class GenericEntityFactoryTest extends GenericFactoryTestCase
 
                 return $object;
             },
-            'bar'
+            'bar',
         ];
 
         yield 'return false will not flush' => [
@@ -107,7 +107,7 @@ final class GenericEntityFactoryTest extends GenericFactoryTestCase
 
                 return false;
             },
-            'foo'
+            'foo',
         ];
     }
 

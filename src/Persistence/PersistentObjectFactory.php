@@ -542,7 +542,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
                     foreach (\array_merge(...$factoryUsed->afterPersist) as $afterPersist) {
                         $afterPersistCallbacks[] = static function() use ($object, $afterPersist, $parameters, $factoryUsed): bool {
                             // this condition is needed to avoid BC breaks: only avoid flush if the callback explicitly returns false
-                            return !($afterPersist($object, $parameters, $factoryUsed) === false);
+                            return !(false === $afterPersist($object, $parameters, $factoryUsed));
                         };
                     }
 
