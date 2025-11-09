@@ -33,7 +33,7 @@ final class StubCommand extends Command
     }
 
     /**
-     * @throws   \RuntimeException
+     * @throws \RuntimeException
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

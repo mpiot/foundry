@@ -16,8 +16,8 @@ use Symfony\Component\HttpKernel\Event\TerminateEvent;
 use Symfony\Component\Messenger\Event\WorkerMessageHandledEvent;
 use Zenstruck\Foundry\Command\LoadFixturesCommand;
 use Zenstruck\Foundry\Persistence\Event\AfterPersist;
-use Zenstruck\Foundry\Persistence\PersistenceManager;
 use Zenstruck\Foundry\Persistence\PersistedObjectsTracker;
+use Zenstruck\Foundry\Persistence\PersistenceManager;
 use Zenstruck\Foundry\Persistence\ResetDatabase\ResetDatabaseManager;
 
 return static function(ContainerConfigurator $container): void {

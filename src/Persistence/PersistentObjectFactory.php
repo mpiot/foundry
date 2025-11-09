@@ -364,6 +364,14 @@ abstract class PersistentObjectFactory extends ObjectFactory
         return $clone;
     }
 
+    /**
+     * @internal
+     */
+    public function isAutorefreshEnabled(): bool
+    {
+        return $this->autorefreshEnabled ??= Configuration::autoRefreshWithLazyObjectsIsEnabled();
+    }
+
     protected function normalizeParameter(string $field, mixed $value): mixed
     {
         if (!Configuration::instance()->isPersistenceAvailable()) {
@@ -558,14 +566,6 @@ abstract class PersistentObjectFactory extends ObjectFactory
                 return false; // don't perform a flush after the hook
             }
         );
-    }
-
-    /**
-     * @internal
-     */
-    public function isAutorefreshEnabled(): bool
-    {
-        return $this->autorefreshEnabled ??= Configuration::autoRefreshWithLazyObjectsIsEnabled();
     }
 
     private function throwIfCannotCreateObject(): void
