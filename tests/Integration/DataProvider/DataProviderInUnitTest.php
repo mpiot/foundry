@@ -29,8 +29,8 @@ use Zenstruck\Foundry\Tests\Fixture\Factories\Object1Factory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Object2Factory;
 use Zenstruck\Foundry\Tests\Fixture\Object1;
 use Zenstruck\Foundry\Tests\Fixture\Object2;
-
 use Zenstruck\Foundry\Tests\Fixture\TestKernel;
+
 use function Zenstruck\Foundry\faker;
 
 /**

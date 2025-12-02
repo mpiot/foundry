@@ -28,8 +28,6 @@ use Zenstruck\Foundry\Persistence\ProxyGenerator;
 use Zenstruck\Foundry\PHPUnit\FoundryExtension;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
-use Zenstruck\Foundry\Tests\Fixture\Entity\GenericEntity;
-use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\GenericProxyEntityFactory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Object1Factory;
 use Zenstruck\Foundry\Tests\Fixture\Model\GenericModel;
 use Zenstruck\Foundry\Tests\Fixture\TestKernel;
@@ -62,6 +60,7 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
     {
         if (!TestKernel::canUseLegacyProxy()) {
             yield [null];
+
             return;
         }
 
@@ -89,6 +88,7 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
     {
         if (!TestKernel::canUseLegacyProxy()) {
             yield [[]];
+
             return;
         }
 
@@ -173,7 +173,6 @@ abstract class DataProviderWithPersistentFactoryInKernelTestCase extends KernelT
                 'default1',
             ];
         }
-
     }
 
     /**

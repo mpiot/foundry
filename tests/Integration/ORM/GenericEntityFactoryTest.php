@@ -13,7 +13,6 @@ namespace Zenstruck\Foundry\Tests\Integration\ORM;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use Symfony\Component\HttpKernel\Kernel;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\EmptyConstructorFactory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\GenericEntityFactory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\GenericProxyEntityFactory;

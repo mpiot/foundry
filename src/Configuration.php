@@ -194,7 +194,7 @@ final class Configuration
             return;
         }
 
-        if (!trait_exists(\Symfony\Component\VarExporter\LazyProxyTrait::class)) {
+        if (!\trait_exists(\Symfony\Component\VarExporter\LazyProxyTrait::class)) {
             // Deprecation is not needed: PersistentProxyObjectFactory will actually throw when create() is called.
             return;
         }

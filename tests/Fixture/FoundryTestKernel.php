@@ -77,7 +77,7 @@ abstract class FoundryTestKernel extends Kernel
 
     public static function canUseLegacyProxy(): bool
     {
-        return trait_exists(\Symfony\Component\VarExporter\LazyProxyTrait::class);
+        return \trait_exists(\Symfony\Component\VarExporter\LazyProxyTrait::class);
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader): void
@@ -143,12 +143,12 @@ abstract class FoundryTestKernel extends Kernel
                 ],
             ];
 
-            if (file_exists(__DIR__.'/../../vendor/doctrine/doctrine-bundle/UPGRADE-3.1.md')) {
+            if (\file_exists(__DIR__.'/../../vendor/doctrine/doctrine-bundle/UPGRADE-3.1.md')) {
                 unset($doctrineConfig['dbal']['use_savepoints']);
                 unset($doctrineConfig['orm']['auto_generate_proxy_classes']);
                 unset($doctrineConfig['orm']['auto_mapping']);
                 unset($doctrineConfig['controller_resolver']['auto_mapping']); // @phpstan-ignore unset.offset
-            } elseif (\PHP_VERSION_ID >= 80400 && file_exists(__DIR__.'/../../vendor/doctrine/doctrine-bundle/UPGRADE-2.18.md')) {
+            } elseif (\PHP_VERSION_ID >= 80400 && \file_exists(__DIR__.'/../../vendor/doctrine/doctrine-bundle/UPGRADE-2.18.md')) {
                 $doctrineConfig['orm']['enable_native_lazy_objects'] = true;
             }
 
