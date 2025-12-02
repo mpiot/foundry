@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.8.1](https://github.com/zenstruck/foundry/releases/tag/v2.8.1)
+
+December 2nd, 2025 - [v2.8.0...v2.8.1](https://github.com/zenstruck/foundry/compare/v2.8.0...v2.8.1)
+
+* 7b9dc07 chore: actually suport Symfony 8 (#1022) by @nikophil
+
 ## [v2.8.0](https://github.com/zenstruck/foundry/releases/tag/v2.8.0)
 
 November 9th, 2025 - [v2.7.9...v2.8.0](https://github.com/zenstruck/foundry/compare/v2.7.9...v2.8.0)
