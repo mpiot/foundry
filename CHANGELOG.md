@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.8.2](https://github.com/zenstruck/foundry/releases/tag/v2.8.2)
+
+December 9th, 2025 - [v2.8.1...v2.8.2](https://github.com/zenstruck/foundry/compare/v2.8.1...v2.8.2)
+
+* 9621dae Improve phpdoc for non empty list (#1037) by @VincentLanglet
+
 ## [v2.8.1](https://github.com/zenstruck/foundry/releases/tag/v2.8.1)
 
 December 2nd, 2025 - [v2.8.0...v2.8.1](https://github.com/zenstruck/foundry/compare/v2.8.0...v2.8.1)
