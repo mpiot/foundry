@@ -564,14 +564,14 @@ abstract class PersistentObjectFactory extends ObjectFactory
             priority: 1000
         )
             ->afterPersist(
-            static function(object $object, array $parameters, self $factoryUsed): bool {
-                Configuration::instance()->eventDispatcher()->dispatch(
-                    new AfterPersist($object, $parameters, $factoryUsed)
-                );
+                static function(object $object, array $parameters, self $factoryUsed): bool {
+                    Configuration::instance()->eventDispatcher()->dispatch(
+                        new AfterPersist($object, $parameters, $factoryUsed)
+                    );
 
-                return false; // don't perform a flush after the hook
-            }
-        );
+                    return false; // don't perform a flush after the hook
+                }
+            );
     }
 
     private function throwIfCannotCreateObject(): void
