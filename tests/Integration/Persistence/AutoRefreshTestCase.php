@@ -67,7 +67,7 @@ abstract class AutoRefreshTestCase extends WebTestCase
 
         self::assertSame('foo', $object->getProp1());
 
-        if ($this->objectManager() instanceof DocumentManager && version_compare(InstalledVersions::getVersion('doctrine/mongodb-odm-bundle') ?? '', '5.4.3', '<')) {
+        if ($this->objectManager() instanceof DocumentManager && \version_compare(InstalledVersions::getVersion('doctrine/mongodb-odm-bundle') ?? '', '5.4.3', '<')) {
             return;
         }
 

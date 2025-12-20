@@ -144,12 +144,12 @@ abstract class FoundryTestKernel extends Kernel
                 ],
             ];
 
-            if (version_compare(InstalledVersions::getVersion('doctrine/doctrine-bundle') ?? '', '3.0', '>=')) {
+            if (\version_compare(InstalledVersions::getVersion('doctrine/doctrine-bundle') ?? '', '3.0', '>=')) {
                 unset($doctrineConfig['dbal']['use_savepoints']);
                 unset($doctrineConfig['orm']['auto_generate_proxy_classes']);
                 unset($doctrineConfig['orm']['auto_mapping']);
                 unset($doctrineConfig['controller_resolver']['auto_mapping']); // @phpstan-ignore unset.offset
-            } elseif (\PHP_VERSION_ID >= 80400 && version_compare(InstalledVersions::getVersion('doctrine/orm') ?? '', '3.4', '>=')) {
+            } elseif (\PHP_VERSION_ID >= 80400 && \version_compare(InstalledVersions::getVersion('doctrine/orm') ?? '', '3.4', '>=')) {
                 $doctrineConfig['orm']['enable_native_lazy_objects'] = true;
             }
 

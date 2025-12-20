@@ -104,7 +104,7 @@ final class PersistedObjectsTracker
         }
 
         $clone = clone $object;
-        $reflector->resetAsLazyGhost($object, function ($object) use ($clone, $id) {
+        $reflector->resetAsLazyGhost($object, function($object) use ($clone, $id) {
             Configuration::instance()->persistence()->autorefresh($object, $id, $clone);
         });
     }
