@@ -14,7 +14,6 @@ namespace Zenstruck\Foundry\Persistence;
 use Zenstruck\Foundry\Configuration;
 use Zenstruck\Foundry\ORM\DoctrineOrmVersionGuesser;
 use Zenstruck\Foundry\Persistence\Event\AfterPersist;
-use Zenstruck\Foundry\Persistence\Exception\RefreshObjectFailed;
 
 /**
  * @internal
