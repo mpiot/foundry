@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [v2.8.3](https://github.com/zenstruck/foundry/releases/tag/v2.8.3)
+
+December 22nd, 2025 - [v2.8.2...v2.8.3](https://github.com/zenstruck/foundry/compare/v2.8.2...v2.8.3)
+
+* a102c0a fix: Allow PersistManager::refresh() to not throw in specific cases (#1044) by @nikophil
+* d4f9997 fix: auto-refresh problem with doctrine/orm 2 (#1042) by @nikophil
+* cace455 Update issue templates by @nikophil
+* b0a5703 fix: call inverse relatoinship callback before afterInstantiate() (#1041) by @nikophil
+
 ## [v2.8.2](https://github.com/zenstruck/foundry/releases/tag/v2.8.2)
 
 December 9th, 2025 - [v2.8.1...v2.8.2](https://github.com/zenstruck/foundry/compare/v2.8.1...v2.8.2)
