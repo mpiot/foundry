@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.8.4](https://github.com/zenstruck/foundry/releases/tag/v2.8.4)
+
+December 23rd, 2025 - [v2.8.3...v2.8.4](https://github.com/zenstruck/foundry/compare/v2.8.3...v2.8.4)
+
+* 45b6e21 fix: remove problematic "conflict" in composer.json (#1046) by @nikophil
+
 ## [v2.8.3](https://github.com/zenstruck/foundry/releases/tag/v2.8.3)
 
 December 22nd, 2025 - [v2.8.2...v2.8.3](https://github.com/zenstruck/foundry/compare/v2.8.2...v2.8.3)
