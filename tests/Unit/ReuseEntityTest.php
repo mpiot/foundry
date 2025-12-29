@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Zenstruck\Foundry\Tests\Unit;
 
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\RequiresMethod;
 use PHPUnit\Framework\Attributes\Test;

@@ -11,7 +11,6 @@
 
 namespace Zenstruck\Foundry\Tests\Integration\Mongo;
 
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\RequiresMethod;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;

@@ -11,7 +11,6 @@
 
 namespace Zenstruck\Foundry\Tests\Integration\DataProvider;
 
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\RequiresMethod;
 use PHPUnit\Framework\Attributes\RequiresPhpunit;
