@@ -11,12 +11,7 @@
 
 namespace Zenstruck\Foundry\Tests\Integration;
 
-use PHPUnit\Framework\Attributes\Depends;
-use PHPUnit\Framework\Attributes\Test;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
-use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\GenericEntityFactory;
 
 final class GetWebTestClientWithResetDatabaseIsNotBrokenTest extends GetWebTestClientIsNotBrokenTest
 {
