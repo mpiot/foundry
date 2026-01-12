@@ -16,7 +16,6 @@ use Zenstruck\Foundry\Tests\Fixture\Document\GlobalDocument;
 use Zenstruck\Foundry\Tests\Fixture\Entity\GlobalEntity;
 
 use function Zenstruck\Foundry\Persistence\persist;
-use function Zenstruck\Foundry\Persistence\proxy;
 
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
