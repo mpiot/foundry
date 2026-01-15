@@ -16,7 +16,6 @@ namespace Zenstruck\Foundry\ORM\ResetDatabase;
 use DAMA\DoctrineTestBundle\Doctrine\DBAL\StaticDriver;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpKernel\RebootableInterface;
-use Zenstruck\Assert;
 use Zenstruck\Foundry\Configuration;
 use Zenstruck\Foundry\Persistence\PersistenceManager;
 use Zenstruck\Foundry\Persistence\ResetDatabase\ResetDatabaseManager;
