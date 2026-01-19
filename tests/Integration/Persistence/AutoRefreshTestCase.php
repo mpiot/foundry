@@ -453,7 +453,7 @@ abstract class AutoRefreshTestCase extends WebTestCase
 
         self::ensureKernelShutdown();
 
-        $client->request('GET', "/hello-world");
+        $client->request('GET', '/hello-world');
 
         self::assertSame('foo', $object->getProp1());
     }
