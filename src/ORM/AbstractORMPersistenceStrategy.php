@@ -103,7 +103,7 @@ abstract class AbstractORMPersistenceStrategy extends PersistenceStrategy
 
         // "Derived entities" could return an entity as part of the identifier array
         return \array_map(
-            function (mixed $value) use ($object) {
+            function(mixed $value) use ($object) {
                 if (!\is_object($value) || !$this->objectManagerFor($object::class)->contains($value)) {
                     return $value;
                 }
@@ -111,7 +111,7 @@ abstract class AbstractORMPersistenceStrategy extends PersistenceStrategy
                 $idValues = $this->classMetadata($value::class)->getIdentifierValues($value);
 
                 // for now we don't support composite identifiers for derived entities
-                return \count($idValues) === 1
+                return 1 === \count($idValues)
                     ? array_first($idValues)
                     : $idValues;
             },

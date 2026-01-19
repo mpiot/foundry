@@ -19,15 +19,14 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Zenstruck\Foundry\Persistence\PersistenceManager;
-use Zenstruck\Foundry\Test\ResetDatabase;
 use Zenstruck\Foundry\Tests\Fixture\EntityInAnotherSchema\Article;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Document\GenericDocumentFactory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\GenericEntityFactory;
 use Zenstruck\Foundry\Tests\Fixture\FoundryTestKernel;
 use Zenstruck\Foundry\Tests\Fixture\ResetDatabase\MongoResetterDecorator;
 use Zenstruck\Foundry\Tests\Fixture\ResetDatabase\OrmResetterDecorator;
-
 use Zenstruck\Foundry\Tests\Fixture\ResetDatabase\ResetDatabaseTestKernel;
+
 use function Zenstruck\Foundry\Persistence\persist;
 use function Zenstruck\Foundry\Persistence\repository;
 
@@ -56,7 +55,7 @@ final class ResetDatabaseTest extends ResetDatabaseTestCase
             self::assertSame(2, $exit, \sprintf('Schema is not valid: %s', $commandOutput = $output->fetch()));
             self::assertStringContainsString('1 schema diff(s) detected', $commandOutput);
             self::assertStringContainsString('DROP TABLE doctrine_migration_versions', $commandOutput);
-        } elseif(ResetDatabaseTestKernel::usesSqlite()) {
+        } elseif (ResetDatabaseTestKernel::usesSqlite()) {
             // Don't know why sqlite always generate those requests with the derived entity ¯\_(ツ)_/¯
             self::assertSame(2, $exit, \sprintf('Schema is not valid: %s', $commandOutput = $output->fetch()));
             self::assertStringContainsString('5 schema diff(s) detected', $commandOutput);

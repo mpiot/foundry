@@ -33,6 +33,11 @@ final class ResetDatabaseTestKernel extends FoundryTestKernel
         }
     }
 
+    public static function usesSqlite(): bool
+    {
+        return \str_starts_with((string) \getenv('DATABASE_URL'), 'sqlite:');
+    }
+
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader): void
     {
         parent::configureContainer($c, $loader);
@@ -75,10 +80,5 @@ final class ResetDatabaseTestKernel extends FoundryTestKernel
         if (self::hasMongo()) {
             $c->register(MongoResetterDecorator::class)->setAutowired(true)->setAutoconfigured(true);
         }
-    }
-
-    public static function usesSqlite(): bool
-    {
-        return str_starts_with((string) \getenv('DATABASE_URL'), 'sqlite:');
     }
 }
