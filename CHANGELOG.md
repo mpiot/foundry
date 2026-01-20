@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [v2.8.6](https://github.com/zenstruck/foundry/releases/tag/v2.8.6)
+
+January 20th, 2026 - [v2.8.5...v2.8.6](https://github.com/zenstruck/foundry/compare/v2.8.5...v2.8.6)
+
+* 4d81bbe fix: always register "inverseRelationshipCallbacks" even if Foundry is not booted (#1063) by @nikophil
+* f43a735 fix(faker): change how FOUNDRY_FAKER_SEED is read (#1061) by @nikophil
+
 ## [v2.8.5](https://github.com/zenstruck/foundry/releases/tag/v2.8.5)
 
 January 20th, 2026 - [v2.8.4...v2.8.5](https://github.com/zenstruck/foundry/compare/v2.8.4...v2.8.5)
