@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [v2.8.5](https://github.com/zenstruck/foundry/releases/tag/v2.8.5)
+
+January 20th, 2026 - [v2.8.4...v2.8.5](https://github.com/zenstruck/foundry/compare/v2.8.4...v2.8.5)
+
+* f6e35e5 fix(autorefresh): prevent weird autorefresh recursion (#1060) by @nikophil
+* 377c6d4 fix: handle derived entities in autorefresh mechanism (#1058) by @nikophil
+* 8701b45 mnior: reboot kernel in database resetter instead of shutdown (#1059) by @nikophil
+* 965fe3c refactor: simplify ResetDatabaseManager (#1054) by @nikophil
+* 473559c chore: add PHP 8.5 to test matrix (#1043) by @nikophil
+* 6c3a127 refactor: explicitly boot Foundry in ResetDatabase (#1049) by @nikophil
+* 368e686 chore: skip legacy proxy tests using #[RequiresMethod] (#1048) by @nikophil
+* d7add25 chore: require symfony/flex as dev dependency (#1047) by @nikophil
+
 ## [v2.8.4](https://github.com/zenstruck/foundry/releases/tag/v2.8.4)
 
 December 23rd, 2025 - [v2.8.3...v2.8.4](https://github.com/zenstruck/foundry/compare/v2.8.3...v2.8.4)
