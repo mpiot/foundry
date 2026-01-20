@@ -83,17 +83,6 @@ final class Configuration
         return $this->faker;
     }
 
-    private function seedFaker(): void
-    {
-        self::$fakerSeed ??= ($this->forcedFakerSeed ?? \random_int(1, 1000000));
-
-        // prevent data providers to use the same seed as the test suite
-        $seed = $this->bootedForDataProvider ? self::$fakerSeed + 1 : self::$fakerSeed;
-
-        $this->faker->seed($seed);
-        self::$fakerSeedHasBeenSet = true;
-    }
-
     public static function fakerSeed(): ?int
     {
         return self::$fakerSeed;
@@ -233,5 +222,16 @@ final class Configuration
         }
 
         trigger_deprecation('zenstruck/foundry', '2.7', $message);
+    }
+
+    private function seedFaker(): void
+    {
+        self::$fakerSeed ??= ($this->forcedFakerSeed ?? \random_int(1, 1000000));
+
+        // prevent data providers to use the same seed as the test suite
+        $seed = $this->bootedForDataProvider ? self::$fakerSeed + 1 : self::$fakerSeed;
+
+        $this->faker->seed($seed);
+        self::$fakerSeedHasBeenSet = true;
     }
 }

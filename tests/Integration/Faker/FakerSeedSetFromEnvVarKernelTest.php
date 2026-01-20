@@ -21,6 +21,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Zenstruck\Foundry\Configuration;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
+
 use function Zenstruck\Foundry\faker;
 
 /**
@@ -30,7 +31,7 @@ use function Zenstruck\Foundry\faker;
 #[RequiresPhpunit('>=11.0')]
 final class FakerSeedSetFromEnvVarKernelTest extends KernelTestCase
 {
-    use Factories, ResetFakerTestTrait, ResetDatabase;
+    use Factories, ResetDatabase, ResetFakerTestTrait;
 
     #[Test]
     public function faker_seed_can_be_set_by_environment_variable(): void

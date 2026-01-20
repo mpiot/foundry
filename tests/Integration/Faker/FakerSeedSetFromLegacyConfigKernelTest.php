@@ -22,6 +22,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Zenstruck\Foundry\Configuration;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
+
 use function Zenstruck\Foundry\faker;
 
 /**
@@ -31,7 +32,7 @@ use function Zenstruck\Foundry\faker;
 #[RequiresPhpunit('>=11.0')]
 final class FakerSeedSetFromLegacyConfigKernelTest extends KernelTestCase
 {
-    use Factories, ResetFakerTestTrait, ResetDatabase;
+    use Factories, ResetDatabase, ResetFakerTestTrait;
 
     #[Test]
     #[IgnoreDeprecations]

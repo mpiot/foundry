@@ -19,6 +19,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Zenstruck\Foundry\Configuration;
 use Zenstruck\Foundry\Test\Factories;
+
 use function Zenstruck\Foundry\faker;
 
 /**

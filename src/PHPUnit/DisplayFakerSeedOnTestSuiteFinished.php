@@ -23,7 +23,7 @@ final class DisplayFakerSeedOnTestSuiteFinished implements FinishedSubscriber
     {
         $fakerSeed = Configuration::fakerSeed();
 
-        if ($fakerSeed !== null) {
+        if (null !== $fakerSeed) {
             echo "\n\nFaker seed: ".$fakerSeed; // @phpstan-ignore ekinoBannedCode.expression
         }
     }

@@ -30,11 +30,11 @@ trait ResetFakerTestTrait
     {
         self::$savedServerSeed = $_SERVER['FOUNDRY_FAKER_SEED'] ?? null;
         self::$savedEnvSeed = $_ENV['FOUNDRY_FAKER_SEED'] ?? null;
-        self::$savedGetEnvSeed = getenv('FOUNDRY_FAKER_SEED') ?: null;
+        self::$savedGetEnvSeed = \getenv('FOUNDRY_FAKER_SEED') ?: null;
 
         $_SERVER['FOUNDRY_FAKER_SEED'] = null;
         $_ENV['FOUNDRY_FAKER_SEED'] = null;
-        putenv('FOUNDRY_FAKER_SEED');
+        \putenv('FOUNDRY_FAKER_SEED');
 
         Configuration::resetFakerSeed();
     }
@@ -44,10 +44,10 @@ trait ResetFakerTestTrait
     {
         $_SERVER['FOUNDRY_FAKER_SEED'] = self::$savedServerSeed;
         $_ENV['FOUNDRY_FAKER_SEED'] = self::$savedEnvSeed;
-        if (self::$savedGetEnvSeed === null) {
-            putenv('FOUNDRY_FAKER_SEED');
+        if (null === self::$savedGetEnvSeed) {
+            \putenv('FOUNDRY_FAKER_SEED');
         } else {
-            putenv('FOUNDRY_FAKER_SEED='.self::$savedGetEnvSeed);
+            \putenv('FOUNDRY_FAKER_SEED='.self::$savedGetEnvSeed);
         }
 
         $savedValue = self::$savedServerSeed ?? self::$savedEnvSeed ?? self::$savedGetEnvSeed;
