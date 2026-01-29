@@ -95,14 +95,14 @@ final class GenericEntityFactoryTest extends GenericFactoryTestCase
     public static function afterPersistDecideFlushProvider(): iterable
     {
         yield 'no return will flush' => [
-            function(GenericModel $object) {
+            static function(GenericModel $object) {
                 $object->setProp1('bar');
             },
             'bar',
         ];
 
         yield 'return true will flush' => [
-            function(GenericModel $object) {
+            static function(GenericModel $object) {
                 $object->setProp1('bar');
 
                 return true;
@@ -111,7 +111,7 @@ final class GenericEntityFactoryTest extends GenericFactoryTestCase
         ];
 
         yield 'return something else than false will flush' => [
-            function(GenericModel $object) {
+            static function(GenericModel $object) {
                 $object->setProp1('bar');
 
                 return $object;
@@ -120,7 +120,7 @@ final class GenericEntityFactoryTest extends GenericFactoryTestCase
         ];
 
         yield 'return false will not flush' => [
-            function(GenericModel $object) {
+            static function(GenericModel $object) {
                 $object->setProp1('bar');
 
                 return false;

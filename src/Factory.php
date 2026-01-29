@@ -142,7 +142,7 @@ abstract class Factory
     final public function distribute(string $field, array $values): FactoryCollection
     {
         return $this->sequence(
-            \array_map(fn($value) => [$field => $value], $values)
+            \array_map(static fn($value) => [$field => $value], $values)
         );
     }
 

@@ -106,7 +106,7 @@ final class ProxyEntityFactoryRelationshipTest extends EntityFactoryRelationship
     {
         static::contactFactory()->create()->_assertPersisted();
 
-        Assert::that(function(): void { static::contactFactory()->withoutPersisting()->create()->_assertPersisted(); })
+        Assert::that(static function(): void { static::contactFactory()->withoutPersisting()->create()->_assertPersisted(); })
             ->throws(AssertionFailedError::class, \sprintf('%s is not persisted.', static::contactFactory()::class())) // @phpstan-ignore classConstant.internalClass
         ;
     }
@@ -117,7 +117,7 @@ final class ProxyEntityFactoryRelationshipTest extends EntityFactoryRelationship
     {
         static::contactFactory()->withoutPersisting()->create()->_assertNotPersisted();
 
-        Assert::that(function(): void { static::contactFactory()->create()->_assertNotPersisted(); })
+        Assert::that(static function(): void { static::contactFactory()->create()->_assertNotPersisted(); })
             ->throws(AssertionFailedError::class, \sprintf('%s is persisted but it should not be.', static::contactFactory()::class())) // @phpstan-ignore classConstant.internalClass
         ;
     }

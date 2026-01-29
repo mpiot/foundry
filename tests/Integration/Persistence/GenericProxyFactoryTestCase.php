@@ -115,7 +115,7 @@ abstract class GenericProxyFactoryTestCase extends GenericFactoryTestCase
         $this->assertSame('default1', $object->getProp1());
         static::factory()->repository()->assert()->exists(['prop1' => 'default1']);
 
-        $object->_withoutAutoRefresh(function(GenericModel&Proxy $object) {
+        $object->_withoutAutoRefresh(static function(GenericModel&Proxy $object) {
             $object->setProp1('new');
             $object->setProp1('new 2');
             $object->_save();
@@ -291,12 +291,12 @@ abstract class GenericProxyFactoryTestCase extends GenericFactoryTestCase
         $value = 'value set with before instantiate';
         $object = $this->factory()
             ->instantiateWith(Instantiator::withConstructor()->allowExtra('extra'))
-            ->beforeInstantiate(function(array $attributes) use ($value) {
+            ->beforeInstantiate(static function(array $attributes) use ($value) {
                 $attributes['extra'] = $value;
 
                 return $attributes;
             })
-            ->afterPersist(function(GenericModel $object, array $attributes) {
+            ->afterPersist(static function(GenericModel $object, array $attributes) {
                 $object->setProp1($attributes['extra']);
             })
             ->create();

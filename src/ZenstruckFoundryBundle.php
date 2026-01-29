@@ -59,7 +59,7 @@ final class ZenstruckFoundryBundle extends AbstractBundle implements CompilerPas
                     ->info('Enable auto-refresh using PHP 8.4 lazy objects (cannot be enabled if PHP < 8.4).')
                     ->defaultNull()
                     ->validate()
-                        ->ifTrue(fn(?bool $enableAutoRefreshWithLazyObjects): bool => $enableAutoRefreshWithLazyObjects && \PHP_VERSION_ID < 80400)
+                        ->ifTrue(static fn(?bool $enableAutoRefreshWithLazyObjects): bool => $enableAutoRefreshWithLazyObjects && \PHP_VERSION_ID < 80400)
                         ->thenInvalid('Cannot enable auto-refresh with lazy objects if not using at least PHP 8.4.')
                     ->end()
                 ->end()
@@ -159,7 +159,7 @@ final class ZenstruckFoundryBundle extends AbstractBundle implements CompilerPas
                                             ->defaultValue([])
                                             ->scalarPrototype()->end()
                                             ->validate()
-                                                ->ifTrue(function(array $configurationFiles): bool {
+                                                ->ifTrue(static function(array $configurationFiles): bool {
                                                     foreach ($configurationFiles as $configurationFile) {
                                                         if (!\is_file($configurationFile)) {
                                                             return true;

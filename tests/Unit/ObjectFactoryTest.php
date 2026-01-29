@@ -104,7 +104,7 @@ final class ObjectFactoryTest extends TestCase
     public function with_closure_factory_constructor(): void
     {
         $object = Object1Factory::new()
-            ->instantiateWith(Instantiator::use(fn(string $prop1) => new Object1($prop1)))
+            ->instantiateWith(Instantiator::use(static fn(string $prop1) => new Object1($prop1)))
             ->create([
                 'prop1' => 'override1',
                 'prop2' => 'override2',
@@ -268,7 +268,7 @@ final class ObjectFactoryTest extends TestCase
     public function with_custom_instantiator_callable(): void
     {
         $object = Object1Factory::new()
-            ->instantiateWith(fn() => new Object1('custom'))
+            ->instantiateWith(static fn() => new Object1('custom'))
             ->create([
                 'prop1' => 'override1',
                 'prop2' => 'override2',
@@ -369,14 +369,14 @@ final class ObjectFactoryTest extends TestCase
     #[Test]
     public function can_create_many(): void
     {
-        $objects = Object1Factory::createMany(3, fn(int $i) => ['prop1' => "value{$i}"]);
+        $objects = Object1Factory::createMany(3, static fn(int $i) => ['prop1' => "value{$i}"]);
 
         $this->assertCount(3, $objects);
         $this->assertSame('value1-constructor', $objects[0]->getProp1());
         $this->assertSame('value2-constructor', $objects[1]->getProp1());
         $this->assertSame('value3-constructor', $objects[2]->getProp1());
 
-        $objects = Object1Factory::new(fn(int $i) => ['prop1' => "value{$i}"])->many(3)->create();
+        $objects = Object1Factory::new(static fn(int $i) => ['prop1' => "value{$i}"])->many(3)->create();
 
         $this->assertCount(3, $objects);
         $this->assertSame('value1-constructor', $objects[0]->getProp1());

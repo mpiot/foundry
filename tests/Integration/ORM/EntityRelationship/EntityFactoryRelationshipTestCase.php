@@ -420,7 +420,7 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
     public function ensure_one_to_many_relations_are_not_pre_persisted(): void
     {
         $category = static::categoryFactory()
-            ->afterInstantiate(function() {
+            ->afterInstantiate(static function() {
                 static::contactFactory()::repository()->assert()->empty();
                 static::addressFactory()::repository()->assert()->empty();
                 static::tagFactory()::repository()->assert()->empty();
@@ -558,7 +558,7 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
     public function can_call_create_in_after_persist_callback(): void
     {
         $category = static::categoryFactory()::new()
-            ->afterPersist(function(Category $category) {
+            ->afterPersist(static function(Category $category) {
                 static::contactFactory()->create(['category' => $category]);
             })
             ->create();
@@ -579,7 +579,7 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
         $contact = static::contactFactory()::createOne(
             [
                 'address' => static::addressFactory()
-                    ->afterPersist(function(Address $address) {
+                    ->afterPersist(static function(Address $address) {
                         $address->setCity('city from after persist');
                     }),
             ]
@@ -598,7 +598,7 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
         $contact = static::contactFactory()::createOne(
             [
                 'category' => static::categoryFactory()
-                    ->afterPersist(function(Category $category) {
+                    ->afterPersist(static function(Category $category) {
                         $category->addSecondaryContact(
                             ProxyGenerator::unwrap(static::contactFactory()::createOne())
                         );
@@ -621,7 +621,7 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
             [
                 'contact' => static::contactFactory()
                     ->beforeInstantiate(
-                        function(array $attributes): array {
+                        static function(array $attributes): array {
                             $attributes['category'] = static::categoryFactory()->create();
 
                             return $attributes;
@@ -649,7 +649,7 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
         $address = static::addressFactory()::createOne(
             [
                 'contact' => static::contactFactory()->with([
-                    'category' => lazy(fn() => static::categoryFactory()->create()),
+                    'category' => lazy(static fn() => static::categoryFactory()->create()),
                 ]),
             ]
         );
@@ -756,7 +756,7 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
     {
         static::contactFactory()
             ->many(2)
-            ->create(['category' => lazy(fn() => static::categoryFactory()::findOrCreate([]))]);
+            ->create(['category' => lazy(static fn() => static::categoryFactory()::findOrCreate([]))]);
 
         static::contactFactory()::assert()->count(2);
         static::categoryFactory()::assert()->count(1);
@@ -823,7 +823,7 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
     public function it_sets_one_to_many_before_after_instantiate(): void
     {
         static::categoryFactory()
-            ->afterInstantiate(function(Category $category) {
+            ->afterInstantiate(static function(Category $category) {
                 self::assertCount(3, $category->getContacts());
             })
             ->create([

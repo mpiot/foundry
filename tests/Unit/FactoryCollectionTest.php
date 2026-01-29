@@ -34,7 +34,7 @@ final class FactoryCollectionTest extends TestCase
 
         SomeFactory::new()
             ->many(1)
-            ->applyStateMethod('nonExistentMethod', fn() => []);
+            ->applyStateMethod('nonExistentMethod', static fn() => []);
     }
 
     /**
@@ -48,7 +48,7 @@ final class FactoryCollectionTest extends TestCase
 
         SomeFactory::new()
             ->many(1)
-            ->applyStateMethod('class', fn() => []);
+            ->applyStateMethod('class', static fn() => []);
     }
 
     /**
@@ -66,7 +66,7 @@ final class FactoryCollectionTest extends TestCase
 
         SomeFactory::new()
             ->many(1)
-            ->applyStateMethod('stateMethod', fn() => $parametersReturned)
+            ->applyStateMethod('stateMethod', static fn() => $parametersReturned)
             ->all()
         ;
     }
@@ -82,7 +82,7 @@ final class FactoryCollectionTest extends TestCase
 
         SomeFactory::new()
             ->many(1)
-            ->applyStateMethod('notStateMethod', fn() => [])
+            ->applyStateMethod('notStateMethod', static fn() => [])
             ->all()
         ;
     }
@@ -111,7 +111,7 @@ final class FactoryCollectionTest extends TestCase
     {
         $objects = SomeFactory::new()
             ->many(2)
-            ->applyStateMethod('stateMethod', fn(int $i) => [$i])
+            ->applyStateMethod('stateMethod', static fn(int $i) => [$i])
             ->create()
         ;
 
@@ -127,7 +127,7 @@ final class FactoryCollectionTest extends TestCase
     {
         $objects = SomeFactory::new()
             ->many(2)
-            ->applyStateMethod('stateMethodWithTwoParameters', fn(int $i) => ['value2' => 42, 'value1' => $i])
+            ->applyStateMethod('stateMethodWithTwoParameters', static fn(int $i) => ['value2' => 42, 'value1' => $i])
             ->create()
         ;
 
@@ -146,7 +146,7 @@ final class FactoryCollectionTest extends TestCase
 
         SomeFactory::new()
             ->many(1)
-            ->applyStateMethod('stateMethodWithTwoParameters', fn(int $i) => ['foo' => 42, 'bar' => 42])
+            ->applyStateMethod('stateMethodWithTwoParameters', static fn(int $i) => ['foo' => 42, 'bar' => 42])
             ->create()
         ;
     }

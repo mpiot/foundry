@@ -93,7 +93,7 @@ final class DoctrineInMemoryDecoratorTest extends KernelTestCase
     #[Test]
     public function it_can_order_find_by_results(): void
     {
-        GenericEntityFactory::createMany(10, fn() => ['prop1' => 'foo', 'propInteger' => faker()->numberBetween()]);
+        GenericEntityFactory::createMany(10, static fn() => ['prop1' => 'foo', 'propInteger' => faker()->numberBetween()]);
 
         $found = GenericEntityFactory::repository()->findBy(['prop1' => 'foo'], orderBy: ['propInteger' => 'asc']);
         self::assertCount(10, $found);
@@ -110,7 +110,7 @@ final class DoctrineInMemoryDecoratorTest extends KernelTestCase
     #[Test]
     public function it_can_order_desc_find_by_results(): void
     {
-        GenericEntityFactory::createMany(10, fn() => ['prop1' => 'foo', 'propInteger' => faker()->numberBetween()]);
+        GenericEntityFactory::createMany(10, static fn() => ['prop1' => 'foo', 'propInteger' => faker()->numberBetween()]);
 
         $found = GenericEntityFactory::repository()->findBy(['prop1' => 'foo'], orderBy: ['propInteger' => 'desc']);
         self::assertCount(10, $found);
@@ -126,7 +126,7 @@ final class DoctrineInMemoryDecoratorTest extends KernelTestCase
     #[Test]
     public function it_can_use_offset(): void
     {
-        GenericEntityFactory::createMany(4, fn(int $i) => ['prop1' => 'foo', 'propInteger' => $i]);
+        GenericEntityFactory::createMany(4, static fn(int $i) => ['prop1' => 'foo', 'propInteger' => $i]);
 
         $found = GenericEntityFactory::repository()->findBy(['prop1' => 'foo'], orderBy: ['propInteger' => 'asc'], offset: 1);
         self::assertCount(3, $found);
@@ -141,7 +141,7 @@ final class DoctrineInMemoryDecoratorTest extends KernelTestCase
     #[Test]
     public function it_can_use_limit_and_offset(): void
     {
-        GenericEntityFactory::createMany(4, fn(int $i) => ['prop1' => 'foo', 'propInteger' => $i]);
+        GenericEntityFactory::createMany(4, static fn(int $i) => ['prop1' => 'foo', 'propInteger' => $i]);
 
         $found = GenericEntityFactory::repository()->findBy(['prop1' => 'foo'], orderBy: ['propInteger' => 'asc'], limit: 2, offset: 1);
         self::assertCount(2, $found);
@@ -169,7 +169,7 @@ final class DoctrineInMemoryDecoratorTest extends KernelTestCase
     #[Test]
     public function it_can_find_by_entity(): void
     {
-        ContactFactory::createMany(2, fn() => ['category' => CategoryFactory::createOne()]);
+        ContactFactory::createMany(2, static fn() => ['category' => CategoryFactory::createOne()]);
 
         $category = CategoryFactory::createOne();
         $contacts = ContactFactory::createMany(2, ['category' => $category]);
@@ -187,7 +187,7 @@ final class DoctrineInMemoryDecoratorTest extends KernelTestCase
     #[RequiresMethod(\Symfony\Component\VarExporter\LazyProxyTrait::class, 'createLazyProxy')]
     public function it_can_find_by_entity_proxified(): void
     {
-        ContactFactory::createMany(2, fn() => ['category' => CategoryFactory::createOne()]);
+        ContactFactory::createMany(2, static fn() => ['category' => CategoryFactory::createOne()]);
 
         $category = CategoryFactory::createOne();
         $contacts = ContactFactory::createMany(2, ['category' => $category]);

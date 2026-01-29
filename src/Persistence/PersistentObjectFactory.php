@@ -417,9 +417,8 @@ abstract class PersistentObjectFactory extends ObjectFactory
                     return $inverseObject;
                 } elseif (null === $fieldType || null === $inverseFieldType) {
                     throw new \InvalidArgumentException(\sprintf("Cannot handle inverse OneToOne relationship: cannot determine types of \"%s::\${$field}\" and \"%s::\${$inverseField}\", please and type to the properties.", static::class(), $value::class()));
-                } else {
-                    throw new \InvalidArgumentException(\sprintf("Cannot handle inverse OneToOne relationship: both \"%s::\${$field}\" and \"%s::\${$inverseField}\" are not nullable, which will result in a circular dependency.", static::class(), $value::class()));
                 }
+                throw new \InvalidArgumentException(\sprintf("Cannot handle inverse OneToOne relationship: both \"%s::\${$field}\" and \"%s::\${$inverseField}\" are not nullable, which will result in a circular dependency.", static::class(), $value::class()));
             }
         }
 

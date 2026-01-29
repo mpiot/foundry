@@ -58,7 +58,7 @@ final class ArrayFactoryTest extends KernelTestCase
                 'foo' => 'baz',
             ],
             ArrayFactory::new(['foo' => 'bar'])
-                ->with(fn() => ['foo' => LazyValue::new(fn() => 'baz')])
+                ->with(static fn() => ['foo' => LazyValue::new(static fn() => 'baz')])
                 ->create(['default2' => 'override value 2'])
         );
     }

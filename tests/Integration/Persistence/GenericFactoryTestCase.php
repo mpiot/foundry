@@ -180,7 +180,7 @@ abstract class GenericFactoryTestCase extends KernelTestCase
     #[Test]
     public function create_many(): void
     {
-        $models = static::factory()->createMany(3, fn(int $i) => ['prop1' => "value{$i}"]);
+        $models = static::factory()->createMany(3, static fn(int $i) => ['prop1' => "value{$i}"]);
 
         static::factory()::repository()->assert()->count(3);
 
@@ -541,7 +541,7 @@ abstract class GenericFactoryTestCase extends KernelTestCase
         static::factory()::repository()->assert()->empty();
 
         $object = null;
-        $return = flush_after(function() use (&$object) {
+        $return = flush_after(static function() use (&$object) {
             $object = static::factory()::createOne();
 
             // ensure auto-refresh does not break when in flush_after
@@ -664,7 +664,7 @@ abstract class GenericFactoryTestCase extends KernelTestCase
     {
         $object = static::factory()
             ->instantiateWith(Instantiator::withConstructor()->allowExtra('extra'))
-            ->afterPersist(function(GenericModel $object, array $attributes) {
+            ->afterPersist(static function(GenericModel $object, array $attributes) {
                 $object->setProp1($attributes['extra']);
                 $object->setPropInteger($object->getPropInteger() + 1);
             })
@@ -683,7 +683,7 @@ abstract class GenericFactoryTestCase extends KernelTestCase
     public function it_actually_calls_post_persist_hook_after_persist_when_in_flush_after(): void
     {
         $object = flush_after(
-            function() {
+            static function() {
                 return static::factory()->afterPersist(
                     static function(GenericModel $o) {
                         $o->setProp1((string) $o->id);
@@ -720,26 +720,26 @@ abstract class GenericFactoryTestCase extends KernelTestCase
     public function can_use_priorities_in_hooks(): void
     {
         $object = $this->factory()
-            ->beforeInstantiate(function(array $attributes) {
+            ->beforeInstantiate(static function(array $attributes) {
                 $attributes['prop1'] = ($attributes['prop1'] ?? '').'3';
 
                 return $attributes;
             })
-            ->beforeInstantiate(function(array $attributes) {
+            ->beforeInstantiate(static function(array $attributes) {
                 $attributes['prop1'] = ($attributes['prop1'] ?? '').'2';
 
                 return $attributes;
             }, priority: 1)
-            ->afterInstantiate(function(GenericModel $object) {
+            ->afterInstantiate(static function(GenericModel $object) {
                 $object->setProp1("{$object->getProp1()}5");
             })
-            ->afterInstantiate(function(GenericModel $object) {
+            ->afterInstantiate(static function(GenericModel $object) {
                 $object->setProp1("{$object->getProp1()}4");
             }, priority: 1)
-            ->afterPersist(function(GenericModel $object) {
+            ->afterPersist(static function(GenericModel $object) {
                 $object->setProp1("{$object->getProp1()}7");
             })
-            ->afterPersist(function(GenericModel $object) {
+            ->afterPersist(static function(GenericModel $object) {
                 $object->setProp1("{$object->getProp1()}6");
             }, priority: 1)
             ->create(['prop1' => '1']);

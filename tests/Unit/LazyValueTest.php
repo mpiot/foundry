@@ -29,7 +29,7 @@ final class LazyValueTest extends TestCase
     #[Test]
     public function lazy(): void
     {
-        $value = lazy(fn() => new \stdClass());
+        $value = lazy(static fn() => new \stdClass());
 
         $this->assertNotSame($value(), $value());
     }
@@ -40,7 +40,7 @@ final class LazyValueTest extends TestCase
     #[Test]
     public function memoize(): void
     {
-        $value = memoize(fn() => new \stdClass());
+        $value = memoize(static fn() => new \stdClass());
 
         $this->assertSame($value(), $value());
     }
@@ -51,7 +51,7 @@ final class LazyValueTest extends TestCase
     #[Test]
     public function can_handle_nested_lazy_values(): void
     {
-        $value = LazyValue::new(LazyValue::new(LazyValue::new(fn() => LazyValue::new(fn() => 'foo'))));
+        $value = LazyValue::new(LazyValue::new(LazyValue::new(static fn() => LazyValue::new(static fn() => 'foo'))));
 
         $this->assertSame('foo', $value());
     }
@@ -62,15 +62,15 @@ final class LazyValueTest extends TestCase
     #[Test]
     public function can_handle_array_with_lazy_values(): void
     {
-        $value = LazyValue::new(fn() => [
+        $value = LazyValue::new(static fn() => [
             5,
-            LazyValue::new(fn() => 'foo'),
+            LazyValue::new(static fn() => 'foo'),
             6,
             'foo' => [
                 'bar' => 7,
-                'baz' => LazyValue::new(fn() => 'foo'),
+                'baz' => LazyValue::new(static fn() => 'foo'),
             ],
-            [8, LazyValue::new(fn() => 'foo')],
+            [8, LazyValue::new(static fn() => 'foo')],
         ]);
 
         $this->assertSame([5, 'foo', 6, 'foo' => ['bar' => 7, 'baz' => 'foo'], [8, 'foo']], $value());

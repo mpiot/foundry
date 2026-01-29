@@ -38,7 +38,7 @@ final class EmbeddableDocumentFactoryTest extends EmbeddableFactoryTestCase
     {
         $document = persist(WithEmbeddableDocument::class, [
             'embeddable' => factory(Embeddable::class, ['prop1' => 'value1']),
-            'embeddables' => factory(Embeddable::class, fn($i) => ['prop1' => 'value'.$i])->many(2),
+            'embeddables' => factory(Embeddable::class, static fn($i) => ['prop1' => 'value'.$i])->many(2),
         ]);
 
         $this->assertCount(2, $document->getEmbeddables());

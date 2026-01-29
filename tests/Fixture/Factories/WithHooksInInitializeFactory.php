@@ -38,7 +38,7 @@ final class WithHooksInInitializeFactory extends PersistentObjectFactory
     {
         return $this
             ->beforeInstantiate(
-                function(array $parameters, string $class, WithHooksInInitializeFactory $factory) {
+                static function(array $parameters, string $class, WithHooksInInitializeFactory $factory) {
                     if (!$factory->isPersisting()) {
                         $parameters['city'] = 'beforeInstantiate';
                     }
@@ -47,7 +47,7 @@ final class WithHooksInInitializeFactory extends PersistentObjectFactory
                 }
             )
             ->afterInstantiate(
-                function(Address $object, array $parameters, WithHooksInInitializeFactory $factory) {
+                static function(Address $object, array $parameters, WithHooksInInitializeFactory $factory) {
                     if (!$factory->isPersisting()) {
                         $object->setCity("{$object->getCity()} - afterInstantiate");
                     }

@@ -175,7 +175,7 @@ final class ProxyGenerator
          */
         $proxyCode = \preg_replace_callback(
             '/^(\s*(?:#\[\\\ReturnTypeWillChange\]\s*)?(?:public|protected|private)?\s*function\s+(?!__)\w+\s*\([^\)]*\)\s*):?\s*\??[\w\\\\|&]*\s*\{\s*$/m',
-            fn($matches) => \rtrim($matches[0])."\n    \$this->_autoRefresh();",
+            static fn($matches) => \rtrim($matches[0])."\n    \$this->_autoRefresh();",
             $proxyCode
         );
 
