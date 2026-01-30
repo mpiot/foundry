@@ -25,6 +25,7 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 use Zenstruck\Foundry\Tests\Fixture\Entity\WithUniqueColumn;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\WithUniqueColumn\WithUniqueColumnFactory;
 use Zenstruck\Foundry\Tests\Integration\RequiresORM;
+
 use function Zenstruck\Foundry\faker;
 
 /**

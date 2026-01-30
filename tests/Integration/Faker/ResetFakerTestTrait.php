@@ -15,7 +15,6 @@ namespace Zenstruck\Foundry\Tests\Integration\Faker;
 
 use PHPUnit\Framework\Attributes\AfterClass;
 use PHPUnit\Framework\Attributes\BeforeClass;
-use Zenstruck\Foundry\Configuration;
 use Zenstruck\Foundry\FakerAdapter;
 
 trait ResetFakerTestTrait

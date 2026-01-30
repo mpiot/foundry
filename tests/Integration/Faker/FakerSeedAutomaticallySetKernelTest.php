@@ -20,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Zenstruck\Foundry\FakerAdapter;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
+
 use function Zenstruck\Foundry\faker;
 
 /**

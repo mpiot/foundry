@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Zenstruck\Foundry\Tests\Integration\Faker;
 
 use PHPUnit\Framework\Attributes\Depends;
-use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\WithEnvironmentVariable;
@@ -23,6 +22,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Zenstruck\Foundry\FakerAdapter;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
+
 use function Zenstruck\Foundry\faker;
 
 /**

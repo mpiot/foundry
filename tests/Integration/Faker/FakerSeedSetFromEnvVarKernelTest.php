@@ -21,6 +21,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Zenstruck\Foundry\FakerAdapter;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
+
 use function Zenstruck\Foundry\faker;
 
 /**
