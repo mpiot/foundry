@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [v2.8.7](https://github.com/zenstruck/foundry/releases/tag/v2.8.7)
+
+February 3rd, 2026 - [v2.8.6...v2.8.7](https://github.com/zenstruck/foundry/compare/v2.8.6...v2.8.7)
+
+* c45e03c fix: allow deleting ghost object (#1076) by @nikophil
+* 86a2036 minor: provide a way to skip faker's seed management (#1075) by @nikophil
+* 32542a6 chore: use APP_ENV=test for benchmark (#1074) by @nikophil
+* 4b6324e minor: add priorities for PHPUnit hooks (#1073) by @nikophil
+* 63c3cac minor: use test environment (#1072) by @nikophil
+* 5dccced Update issue templates (#1064) by @nikophil
+
 ## [v2.8.6](https://github.com/zenstruck/foundry/releases/tag/v2.8.6)
 
 January 20th, 2026 - [v2.8.5...v2.8.6](https://github.com/zenstruck/foundry/compare/v2.8.5...v2.8.6)
