@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## [v2.9.0](https://github.com/zenstruck/foundry/releases/tag/v2.9.0)
+
+February 4th, 2026 - [v2.8.7...v2.9.0](https://github.com/zenstruck/foundry/compare/v2.8.7...v2.9.0)
+
+* 5e11589 minor: fix last bits before release (#1080) by @nikophil
+* 4f97e89 fix(in-memory): trigger in memory on PreparationStarted (#1077) (#1080) by @nikophil
+* e539491 fix: handle reset DB mechanism along with "before hooks" methods (#1070) (#1080) by @nikophil
+* 2d59700 feat: automatic DB reset (#1068) (#1080) by @nikophil
+* 9aaf683 minor: remove useless `Factories` trait (#1067) (#1080) by @nikophil
+* 78b95d1 feat(2.9): deprecate `ResetDatabase` trait (#985) (#1080) by @nikophil
+* 11b4b03 fix permutations in .github/workflows/phpunit.yml (#1080) by @nikophil
+* 3025311 remove useless import (#1080) by @nikophil
+* f91c2fa fix: fixes after deprecating `Factories` trait (#1066) (#1080) by @nikophil
+* deb7637 feat(2.9): deprecate `Factories` trait and force PHPUnit extension usage (#968) (#1080) by @nikophil
+* e57d750 refactor: harmonize how factories are proxified in data providers (#1065) (#1080) by @nikophil
+* 9cbf3c7 minor: some house keeping (#1064) (#1080) by @nikophil
+
 ## [v2.8.7](https://github.com/zenstruck/foundry/releases/tag/v2.8.7)
 
 February 3rd, 2026 - [v2.8.6...v2.8.7](https://github.com/zenstruck/foundry/compare/v2.8.6...v2.8.7)
