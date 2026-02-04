@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of the zenstruck/foundry package.
  *
@@ -17,7 +15,7 @@ namespace Zenstruck\Foundry\PHPUnit\DataProvider;
  * @internal
  * @author Nicolas PHILIPPE <nikophil@gmail.com>
  *
- * This is just a maker for subscribers related to data providers.
+ * This is just a marker for subscribers related to data providers.
  */
 interface DataProviderSubscriberInterface
 {

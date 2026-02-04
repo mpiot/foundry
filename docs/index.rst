@@ -1770,7 +1770,7 @@ Then, by default, before each test, it resets the schema using ``doctrine:schema
 
         class MyTest extends WebTestCase
         {
-            use ResetDatabase, Factories;
+            use Factories, ResetDatabase;
 
             // ...
         }
@@ -1922,13 +1922,11 @@ Foundry provides a mechanism to automatically refresh inside a functional test t
 ::
 
     use App\Factory\PostFactory;
-    use Zenstruck\Foundry\Test\Factories;
-    use Zenstruck\Foundry\Test\ResetDatabase;
+    use Zenstruck\Foundry\Attribute\ResetDatabase;
 
+    #[ResetDatabase]
     class MyTest extends WebTestCase
     {
-        use ResetDatabase;
-
         public function test_with_autorefresh(): void
         {
             $post = PostFactory::createOne(['title' => 'My Title']);
@@ -2744,19 +2742,19 @@ Full Default Bundle Configuration
         orm:
             reset:
 
-                # DBAL connections to reset with ResetDatabase attribute
+                # DBAL connections to reset with the reset database mechanism
                 connections:
 
                     # Default:
                     - default
 
-                # Entity Managers to reset with ResetDatabase attribute
+                # Entity Managers to reset with the reset database mechanism
                 entity_managers:
 
                     # Default:
                     - default
 
-                # Reset mode to use with ResetDatabase attribute
+                # Reset mode to use with the reset database mechanism
                 mode:                 schema # One of "schema"; "migrate"
                 migrations:
 
@@ -2766,7 +2764,7 @@ Full Default Bundle Configuration
         mongo:
             reset:
 
-                # Document Managers to reset with ResetDatabase attribute
+                # Document Managers to reset with the reset database mechanism
                 document_managers:
 
                     # Default:

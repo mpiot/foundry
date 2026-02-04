@@ -60,9 +60,8 @@ abstract class ObjectFactory extends Factory
         }
 
         $parameters = $this->normalizeParameters($parameters);
-        $instantiator = $this->instantiator ?? Configuration::instance()->instantiator;
         /** @var T $object */
-        $object = $instantiator($parameters, static::class());
+        $object = ($this->instantiator())($parameters, static::class());
 
         foreach (\array_merge(...$this->afterInstantiate) as $hook) {
             $hook($object, $parameters, $this);

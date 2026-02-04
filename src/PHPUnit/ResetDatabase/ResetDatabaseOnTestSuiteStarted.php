@@ -45,8 +45,7 @@ final class ResetDatabaseOnTestSuiteStarted implements Event\TestSuite\StartedSu
             return;
         }
 
-        if (!$this->shouldReset($testClassName)
-        ) {
+        if (!$this->shouldReset($testClassName)) {
             return;
         }
 
