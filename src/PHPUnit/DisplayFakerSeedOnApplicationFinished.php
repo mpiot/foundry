@@ -14,17 +14,20 @@ declare(strict_types=1);
 namespace Zenstruck\Foundry\PHPUnit;
 
 use PHPUnit\Event;
+use Zenstruck\Foundry\FakerAdapter;
 
 /**
  * @internal
  * @author Nicolas PHILIPPE <nikophil@gmail.com>
  */
-final class ShutdownFoundryOnDataProviderMethodFinished implements Event\Test\DataProviderMethodFinishedSubscriber
+final class DisplayFakerSeedOnApplicationFinished implements Event\Application\FinishedSubscriber
 {
-    public function notify(Event\Test\DataProviderMethodFinished $event): void
+    public function notify(Event\Application\Finished $event): void
     {
-        if (\method_exists($event->testMethod()->className(), '_shutdownAfterDataProvider')) {
-            $event->testMethod()->className()::_shutdownAfterDataProvider();
+        $fakerSeed = FakerAdapter::fakerSeed();
+
+        if (null !== $fakerSeed) {
+            echo "\nFaker seed used: {$fakerSeed}\n"; // @phpstan-ignore ekinoBannedCode.expression
         }
     }
 }

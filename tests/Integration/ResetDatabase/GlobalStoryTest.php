@@ -13,45 +13,12 @@ declare(strict_types=1);
 
 namespace Zenstruck\Foundry\Tests\Integration\ResetDatabase;
 
-use PHPUnit\Framework\Attributes\Test;
-use Zenstruck\Foundry\Tests\Fixture\Document\GlobalDocument;
-use Zenstruck\Foundry\Tests\Fixture\Entity\GlobalEntity;
-use Zenstruck\Foundry\Tests\Fixture\FoundryTestKernel;
-use Zenstruck\Foundry\Tests\Fixture\Stories\GlobalStory;
+use PHPUnit\Framework\Attributes\RequiresPhpunitExtension;
+use Zenstruck\Foundry\Attribute\ResetDatabase;
+use Zenstruck\Foundry\PHPUnit\FoundryExtension;
 
-use function Zenstruck\Foundry\Persistence\repository;
-
-final class GlobalStoryTest extends ResetDatabaseTestCase
+#[ResetDatabase]
+#[RequiresPhpunitExtension(FoundryExtension::class)]
+final class GlobalStoryTest extends GlobalStoryTestCase
 {
-    /**
-     * @test
-     */
-    #[Test]
-    public function global_stories_are_loaded(): void
-    {
-        if (FoundryTestKernel::hasORM()) {
-            repository(GlobalEntity::class)->assert()->count(2);
-        }
-
-        if (FoundryTestKernel::hasMongo()) {
-            repository(GlobalDocument::class)->assert()->count(2);
-        }
-    }
-
-    /**
-     * @test
-     */
-    #[Test]
-    public function global_stories_cannot_be_loaded_again(): void
-    {
-        GlobalStory::load();
-
-        if (FoundryTestKernel::hasORM()) {
-            repository(GlobalEntity::class)->assert()->count(2);
-        }
-
-        if (FoundryTestKernel::hasMongo()) {
-            repository(GlobalDocument::class)->assert()->count(2);
-        }
-    }
 }

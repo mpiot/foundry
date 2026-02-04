@@ -18,13 +18,14 @@ use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\RequiresPhpunitExtension;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Zenstruck\Foundry\Attribute\ResetDatabase;
 use Zenstruck\Foundry\InMemory\AsInMemoryTest;
 use Zenstruck\Foundry\PHPUnit\FoundryExtension;
-use Zenstruck\Foundry\Test\Factories;
-use Zenstruck\Foundry\Test\ResetDatabase;
 use Zenstruck\Foundry\Tests\Fixture\Entity\Address;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\Address\AddressFactory;
 use Zenstruck\Foundry\Tests\Integration\RequiresORM;
+
+use function Zenstruck\Foundry\Persistence\delete;
 
 /**
  * @author Nicolas PHILIPPE <nikophil@gmail.com>
@@ -32,11 +33,10 @@ use Zenstruck\Foundry\Tests\Integration\RequiresORM;
  */
 #[RequiresPhpunit('>=11.4')]
 #[RequiresPhpunitExtension(FoundryExtension::class)]
+#[ResetDatabase]
 final class InMemoryAttributeOnMethodTest extends KernelTestCase
 {
-    use Factories;
     use RequiresORM;
-    use ResetDatabase;
 
     private EntityManagerInterface $entityManager;
 
@@ -73,5 +73,7 @@ final class InMemoryAttributeOnMethodTest extends KernelTestCase
         self::assertSame(1, $this->entityManager->getRepository(Address::class)->count([]));
 
         self::assertNotNull($address->id);
+
+        delete($address);
     }
 }

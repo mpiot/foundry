@@ -9,14 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Zenstruck\Foundry\Tests\Integration\DataProvider;
+namespace Integration\Persistence;
 
-use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\RequiresPhpunitExtension;
+use Zenstruck\Foundry\Attribute\ResetDatabase;
 use Zenstruck\Foundry\PHPUnit\FoundryExtension;
-use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\GenericEntityFactory;
-use Zenstruck\Foundry\Tests\Integration\RequiresORM;
+use Zenstruck\Foundry\Tests\Integration\Persistence\GenericFactoryUsingBeforeHooksTestCase;
 
 /**
  * @author Nicolas PHILIPPE <nikophil@gmail.com>
@@ -24,13 +23,7 @@ use Zenstruck\Foundry\Tests\Integration\RequiresORM;
  */
 #[RequiresPhpunit('>=11.4')]
 #[RequiresPhpunitExtension(FoundryExtension::class)]
-#[IgnoreDeprecations]
-final class GenericEntityFactoryTest extends DataProviderWithPersistentFactoryAndPHP84InKernelTestCase
+#[ResetDatabase]
+final class GenericFactoryUsingBeforeHooksAndResetDatabaseAttributeTest extends GenericFactoryUsingBeforeHooksTestCase
 {
-    use RequiresORM;
-
-    protected static function factory(): GenericEntityFactory
-    {
-        return GenericEntityFactory::new();
-    }
 }

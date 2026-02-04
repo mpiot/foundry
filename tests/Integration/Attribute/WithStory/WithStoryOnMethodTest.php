@@ -17,10 +17,9 @@ use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\RequiresPhpunitExtension;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Zenstruck\Foundry\Attribute\ResetDatabase;
 use Zenstruck\Foundry\Attribute\WithStory;
 use Zenstruck\Foundry\PHPUnit\FoundryExtension;
-use Zenstruck\Foundry\Test\Factories;
-use Zenstruck\Foundry\Test\ResetDatabase;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Entity\GenericEntityFactory;
 use Zenstruck\Foundry\Tests\Fixture\Stories\EntityPoolStory;
 use Zenstruck\Foundry\Tests\Fixture\Stories\EntityStory;
@@ -33,9 +32,10 @@ use Zenstruck\Foundry\Tests\Integration\RequiresORM;
  */
 #[RequiresPhpunit('>=11.0')]
 #[RequiresPhpunitExtension(FoundryExtension::class)]
+#[ResetDatabase]
 final class WithStoryOnMethodTest extends KernelTestCase
 {
-    use Factories, RequiresORM, ResetDatabase;
+    use RequiresORM;
 
     #[Test]
     #[WithStory(EntityStory::class)]

@@ -15,8 +15,10 @@ use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\Attributes\BeforeClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Zenstruck\Foundry\Attribute\ResetDatabase as ResetDatabaseAttribute;
 use Zenstruck\Foundry\Configuration;
 use Zenstruck\Foundry\Persistence\ResetDatabase\ResetDatabaseManager;
+use Zenstruck\Foundry\PHPUnit\FoundryExtension;
 
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
@@ -30,6 +32,12 @@ trait ResetDatabase
     #[BeforeClass]
     public static function _resetDatabaseBeforeFirstTest(): void
     {
+        if (FoundryExtension::isEnabled()) {
+            trigger_deprecation('zenstruck/foundry', '2.9', \sprintf('Trait "%s" is deprecated and will be removed in Foundry 3. Use attribute "%s" instead. See https://github.com/zenstruck/foundry/blob/2.x/UPGRADE-2.9.md to upgrade.', ResetDatabase::class, ResetDatabaseAttribute::class));
+
+            return;
+        }
+
         $kernel = static::_boot(); // @phpstan-ignore staticClassAccess.privateMethod
 
         ResetDatabaseManager::resetBeforeFirstTest($kernel);
@@ -44,6 +52,10 @@ trait ResetDatabase
     #[Before(10)]
     public static function _resetDatabaseBeforeEachTest(): void
     {
+        if (FoundryExtension::isEnabled()) {
+            return;
+        }
+
         if (ResetDatabaseManager::canSkipSchemaReset()) {
             // can fully skip booting the kernel
             return;

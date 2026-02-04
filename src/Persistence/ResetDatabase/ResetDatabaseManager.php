@@ -95,4 +95,9 @@ final class ResetDatabaseManager
     {
         return self::isDAMADoctrineTestBundleEnabled() && PersistenceManager::isOrmOnly();
     }
+
+    public static function databaseHasBeenResetBeforeFirstTest(): bool
+    {
+        return self::$hasDatabaseBeenReset;
+    }
 }
