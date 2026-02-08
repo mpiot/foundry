@@ -28,7 +28,7 @@ final class NoResetGetWebTestClientIsNotBrokenTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $client->request('GET', "/hello-world");
+        $client->request('GET', '/hello-world');
         self::assertResponseIsSuccessful();
     }
 

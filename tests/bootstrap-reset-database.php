@@ -12,6 +12,7 @@
 use Symfony\Component\Filesystem\Filesystem;
 use Zenstruck\Foundry\Tests\Fixture\FoundryTestKernel;
 use Zenstruck\Foundry\Tests\Fixture\ResetDatabase\ResetDatabaseTestKernel;
+
 use function Zenstruck\Foundry\application;
 use function Zenstruck\Foundry\runCommand;
 
@@ -21,7 +22,7 @@ if (!FoundryTestKernel::usesMigrations()) {
 
 $fs = new Filesystem();
 
-$fs->mkdir(__DIR__ . '/../var/cache/Migrations');
+$fs->mkdir(__DIR__.'/../var/cache/Migrations');
 
 $kernel = new ResetDatabaseTestKernel('test', true);
 $kernel->boot();
@@ -33,10 +34,9 @@ runCommand($application, 'doctrine:database:create', canFail: true);
 
 $configuration = '';
 if (\getenv('MIGRATION_CONFIGURATION_FILE')) {
-    $configuration = '--configuration ' . \getcwd() . '/' . \getenv('MIGRATION_CONFIGURATION_FILE');
+    $configuration = '--configuration '.\getcwd().'/'.\getenv('MIGRATION_CONFIGURATION_FILE');
 }
 runCommand($application, "doctrine:migrations:diff {$configuration}");
 runCommand($application, 'doctrine:database:drop --force', canFail: true);
 
 $kernel->shutdown();
-

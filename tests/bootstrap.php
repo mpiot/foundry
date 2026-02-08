@@ -11,22 +11,23 @@
 
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\Filesystem\Filesystem;
+
 use function Symfony\Component\String\u;
 
-require \dirname(__DIR__) . '/vendor/autoload.php';
+require \dirname(__DIR__).'/vendor/autoload.php';
 
 $fs = new Filesystem();
 
-$fs->remove(__DIR__ . '/../var/cache');
+$fs->remove(__DIR__.'/../var/cache');
 
 if (!isset($_ENV['PARATEST'])) {
-    (new Dotenv())->usePutenv()->loadEnv(__DIR__ . '/../.env', testEnvs: []);
+    (new Dotenv())->usePutenv()->loadEnv(__DIR__.'/../.env', testEnvs: []);
 }
 
 $databaseUrl = u($_ENV['DATABASE_URL'] ?? '');
 if ($databaseUrl->startsWith('sqlite:')
     && $fs->exists(
-        $sqliteFile = $databaseUrl->after('sqlite://')->trimStart('/')->replace('%kernel.project_dir%', dirname(__DIR__))->toString()
+        $sqliteFile = $databaseUrl->after('sqlite://')->trimStart('/')->replace('%kernel.project_dir%', \dirname(__DIR__))->toString()
     )
 ) {
     $fs->remove($sqliteFile);
@@ -35,5 +36,5 @@ if ($databaseUrl->startsWith('sqlite:')
 $command = \implode(' ', $_SERVER['argv']);
 
 if (\str_contains($command, '--testsuite reset-database')) {
-    require __DIR__ . '/bootstrap-reset-database.php';
+    require __DIR__.'/bootstrap-reset-database.php';
 }
