@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [v2.9.1](https://github.com/zenstruck/foundry/releases/tag/v2.9.1)
+
+February 8th, 2026 - [v2.9.0...v2.9.1](https://github.com/zenstruck/foundry/compare/v2.9.0...v2.9.1)
+
+* 47a431c chore(ci): use-dama => no-dama (#1090) by @nikophil
+* d8ce94b fix: ensure in WebTestCase with kernel already boot does not occur (#1088) by @nikophil
+* 4820f3c chore: fix bug report template by @nikophil
+* 516b786 chore: test using PHPunit 13 (#1086) by @nikophil
+* 692f74c docs: minor docs fixes (#1082) by @nikophil
+
 ## [v2.9.0](https://github.com/zenstruck/foundry/releases/tag/v2.9.0)
 
 February 4th, 2026 - [v2.8.7...v2.9.0](https://github.com/zenstruck/foundry/compare/v2.8.7...v2.9.0)
