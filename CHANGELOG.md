@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v2.9.2](https://github.com/zenstruck/foundry/releases/tag/v2.9.2)
+
+February 17th, 2026 - [v2.9.1...v2.9.2](https://github.com/zenstruck/foundry/compare/v2.9.1...v2.9.2)
+
+* 5e70129 fix: arrange compatibility with PHPUnit 10 (#1103) by @nikophil
+
 ## [v2.9.1](https://github.com/zenstruck/foundry/releases/tag/v2.9.1)
 
 February 8th, 2026 - [v2.9.0...v2.9.1](https://github.com/zenstruck/foundry/compare/v2.9.0...v2.9.1)
