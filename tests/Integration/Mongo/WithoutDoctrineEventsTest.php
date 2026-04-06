@@ -27,16 +27,22 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
 {
     use Factories, RequiresMongo, ResetDatabase;
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testMongoEventsAreCalledByDefault(): void
+    public function mongo_events_are_called_by_default(): void
     {
         $document = DocumentForDoctrineEventsFactory::createOne(['name' => 'test']);
 
         self::assertSame('test (from Mongo event)', $document->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItCanDisableAllMongoEvents(): void
+    public function it_can_disable_all_mongo_events(): void
     {
         $document = DocumentForDoctrineEventsFactory::new()
             ->withoutDoctrineEvents()
@@ -45,8 +51,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertSame('test', $document->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItCanDisableSpecificMongoEventListener(): void
+    public function it_can_disable_specific_mongo_event_listener(): void
     {
         $document = DocumentForDoctrineEventsFactory::new()
             ->withoutDoctrineEvents(MongoDoctrineEventsListener::class)
@@ -55,8 +64,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertSame('test', $document->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testMongoEventsAreRestoredAfterCreation(): void
+    public function mongo_events_are_restored_after_creation(): void
     {
         DocumentForDoctrineEventsFactory::new()
             ->withoutDoctrineEvents()
@@ -67,8 +79,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertSame('second (from Mongo event)', $document->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItThrowsWhenUsedInsideFlushAfter(): void
+    public function it_throws_when_used_inside_flush_after(): void
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('withoutDoctrineEvents() cannot be used inside flush_after().');

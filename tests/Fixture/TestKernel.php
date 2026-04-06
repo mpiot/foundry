@@ -23,7 +23,6 @@ use Zenstruck\Foundry\Tests\Fixture\App\Controller\HelloWorld;
 use Zenstruck\Foundry\Tests\Fixture\App\Controller\UpdateGenericModel;
 use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\AsEntityListenerListener;
 use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\ChildEntityForDoctrineEventsFactory;
-use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\ParentEntityForDoctrineEventsFactory;
 use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\DoctrineEventsSubscriber;
 use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\DocumentForDoctrineEventsFactory;
 use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\EntityForDoctrineEventsFactory;
@@ -31,6 +30,7 @@ use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\EntityWithAsEntityListenerFac
 use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\EntityWithOrmEntityListenerFactory;
 use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\MongoDoctrineEventsListener;
 use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\OrmEntityListener;
+use Zenstruck\Foundry\Tests\Fixture\DoctrineEvents\ParentEntityForDoctrineEventsFactory;
 use Zenstruck\Foundry\Tests\Fixture\Events\FoundryEventListener;
 use Zenstruck\Foundry\Tests\Fixture\Factories\ArrayFactory;
 use Zenstruck\Foundry\Tests\Fixture\Factories\Object1Factory;
@@ -76,15 +76,15 @@ final class TestKernel extends FoundryTestKernel
 
         $c->register(FoundryEventListener::class)->setAutowired(true)->setAutoconfigured(true);
 
-      if (self::hasORM()) {
-          $c->register(DoctrineEventsSubscriber::class)->setAutowired(true)->setAutoconfigured(true);
-          $c->register(EntityForDoctrineEventsFactory::class)->setAutowired(true)->setAutoconfigured(true);
-          $c->register(OrmEntityListener::class)->setAutowired(true)->setAutoconfigured(true);
-          $c->register(EntityWithOrmEntityListenerFactory::class)->setAutowired(true)->setAutoconfigured(true);
-          $c->register(AsEntityListenerListener::class)->setAutowired(true)->setAutoconfigured(true);
-          $c->register(EntityWithAsEntityListenerFactory::class)->setAutowired(true)->setAutoconfigured(true);
-          $c->register(ParentEntityForDoctrineEventsFactory::class)->setAutowired(true)->setAutoconfigured(true);
-          $c->register(ChildEntityForDoctrineEventsFactory::class)->setAutowired(true)->setAutoconfigured(true);
+        if (self::hasORM()) {
+            $c->register(DoctrineEventsSubscriber::class)->setAutowired(true)->setAutoconfigured(true);
+            $c->register(EntityForDoctrineEventsFactory::class)->setAutowired(true)->setAutoconfigured(true);
+            $c->register(OrmEntityListener::class)->setAutowired(true)->setAutoconfigured(true);
+            $c->register(EntityWithOrmEntityListenerFactory::class)->setAutowired(true)->setAutoconfigured(true);
+            $c->register(AsEntityListenerListener::class)->setAutowired(true)->setAutoconfigured(true);
+            $c->register(EntityWithAsEntityListenerFactory::class)->setAutowired(true)->setAutoconfigured(true);
+            $c->register(ParentEntityForDoctrineEventsFactory::class)->setAutowired(true)->setAutoconfigured(true);
+            $c->register(ChildEntityForDoctrineEventsFactory::class)->setAutowired(true)->setAutoconfigured(true);
         }
 
         if (self::hasMongo()) {

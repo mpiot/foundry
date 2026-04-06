@@ -437,6 +437,24 @@ final class PersistenceManager
         })();
     }
 
+    /**
+     * @template TCallback
+     *
+     * @param class-string         $entityClass
+     * @param list<class-string>   $disabledClasses [] = all, [Foo::class] = specific
+     * @param callable():TCallback $callback
+     *
+     * @return TCallback
+     */
+    public function withoutDoctrineEvents(string $entityClass, array $disabledClasses, callable $callback): mixed
+    {
+        if (!$this->flush) {
+            throw new \LogicException('withoutDoctrineEvents() cannot be used inside flush_after().');
+        }
+
+        return $this->strategyFor($entityClass)->withoutDoctrineEvents($entityClass, $disabledClasses, $callback);
+    }
+
     private function flushAllStrategies(): void
     {
         foreach ($this->strategies as $strategy) {
@@ -467,24 +485,6 @@ final class PersistenceManager
         }
 
         return $shouldFlush;
-    }
-
-    /**
-     * @template TCallback
-     *
-     * @param class-string          $entityClass
-     * @param list<class-string>    $disabledClasses [] = all, [Foo::class] = specific
-     * @param callable():TCallback  $callback
-     *
-     * @return TCallback
-     */
-    public function withoutDoctrineEvents(string $entityClass, array $disabledClasses, callable $callback): mixed
-    {
-        if (!$this->flush) {
-            throw new \LogicException('withoutDoctrineEvents() cannot be used inside flush_after().');
-        }
-
-        return $this->strategyFor($entityClass)->withoutDoctrineEvents($entityClass, $disabledClasses, $callback);
     }
 
     /**

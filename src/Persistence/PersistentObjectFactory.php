@@ -250,43 +250,6 @@ abstract class PersistentObjectFactory extends ObjectFactory
         return $this->doCreate($attributes);
     }
 
-    /**
-     * @phpstan-param callable(int):Parameters|Parameters $attributes
-     *
-     * @return T
-     */
-    private function doCreate(callable|array $attributes): object
-    {
-        $configuration = Configuration::instance();
-
-        if ($configuration->inADataProvider()
-            && (\PHP_VERSION_ID >= 80400 || $this instanceof PersistentProxyObjectFactory)
-            && ($this->isPersisting() || $configuration->isInMemoryEnabled())
-        ) {
-            return ProxyGenerator::wrapFactory($this->with($attributes));
-        }
-
-        $object = parent::create($attributes);
-
-        $this->throwIfCannotCreateObject();
-
-        if (PersistMode::PERSIST !== $this->persistMode()) {
-            return $object;
-        }
-
-        if ($configuration->flushOnce && !$this->isRootFactory) {
-            return $object;
-        }
-
-        if (!$configuration->isPersistenceAvailable()) {
-            throw new \LogicException('Persistence cannot be used in unit tests.');
-        }
-
-        $configuration->persistence()->save($object);
-
-        return $object;
-    }
-
     final public function andPersist(): static
     {
         $clone = clone $this;
@@ -613,6 +576,43 @@ abstract class PersistentObjectFactory extends ObjectFactory
                 return false; // don't perform a flush after the hook
             }
         );
+    }
+
+    /**
+     * @phpstan-param callable(int):Parameters|Parameters $attributes
+     *
+     * @return T
+     */
+    private function doCreate(callable|array $attributes): object
+    {
+        $configuration = Configuration::instance();
+
+        if ($configuration->inADataProvider()
+            && (\PHP_VERSION_ID >= 80400 || $this instanceof PersistentProxyObjectFactory)
+            && ($this->isPersisting() || $configuration->isInMemoryEnabled())
+        ) {
+            return ProxyGenerator::wrapFactory($this->with($attributes));
+        }
+
+        $object = parent::create($attributes);
+
+        $this->throwIfCannotCreateObject();
+
+        if (PersistMode::PERSIST !== $this->persistMode()) {
+            return $object;
+        }
+
+        if ($configuration->flushOnce && !$this->isRootFactory) {
+            return $object;
+        }
+
+        if (!$configuration->isPersistenceAvailable()) {
+            throw new \LogicException('Persistence cannot be used in unit tests.');
+        }
+
+        $configuration->persistence()->save($object);
+
+        return $object;
     }
 
     private function throwIfCannotCreateObject(): void

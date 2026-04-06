@@ -33,16 +33,22 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
 {
     use Factories, RequiresORM, ResetDatabase;
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testDoctrineEventsAreCalledByDefault(): void
+    public function doctrine_events_are_called_by_default(): void
     {
         $entity = EntityForDoctrineEventsFactory::createOne(['name' => 'test']);
 
         self::assertSame('test (from Doctrine event)', $entity->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItCanDisableAllDoctrineEvents(): void
+    public function it_can_disable_all_doctrine_events(): void
     {
         $entity = EntityForDoctrineEventsFactory::new()
             ->withoutDoctrineEvents()
@@ -51,8 +57,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertSame('test', $entity->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItCanDisableSpecificDoctrineEventListener(): void
+    public function it_can_disable_specific_doctrine_event_listener(): void
     {
         $entity = EntityForDoctrineEventsFactory::new()
             ->withoutDoctrineEvents(DoctrineEventsSubscriber::class)
@@ -61,8 +70,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertSame('test', $entity->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testDoctrineEventsAreRestoredAfterCreation(): void
+    public function doctrine_events_are_restored_after_creation(): void
     {
         EntityForDoctrineEventsFactory::new()
             ->withoutDoctrineEvents()
@@ -76,8 +88,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
 
     // --- flush_after() ---
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItThrowsWhenUsedInsideFlushAfter(): void
+    public function it_throws_when_used_inside_flush_after(): void
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('withoutDoctrineEvents() cannot be used inside flush_after().');
@@ -91,16 +106,22 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
 
     // --- #[ORM\EntityListeners] ---
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testOrmEntityListenerIsCalledByDefault(): void
+    public function orm_entity_listener_is_called_by_default(): void
     {
         $entity = EntityWithOrmEntityListenerFactory::createOne(['name' => 'test']);
 
         self::assertSame('test (from ORM entity listener)', $entity->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItCanDisableAllOrmEntityListeners(): void
+    public function it_can_disable_all_orm_entity_listeners(): void
     {
         $entity = EntityWithOrmEntityListenerFactory::new()
             ->withoutDoctrineEvents()
@@ -109,8 +130,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertSame('test', $entity->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItCanDisableSpecificOrmEntityListener(): void
+    public function it_can_disable_specific_orm_entity_listener(): void
     {
         $entity = EntityWithOrmEntityListenerFactory::new()
             ->withoutDoctrineEvents(OrmEntityListener::class)
@@ -119,8 +143,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertSame('test', $entity->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testOrmEntityListenerIsRestoredAfterCreation(): void
+    public function orm_entity_listener_is_restored_after_creation(): void
     {
         EntityWithOrmEntityListenerFactory::new()
             ->withoutDoctrineEvents()
@@ -133,16 +160,22 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
 
     // --- #[AsEntityListener] ---
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testAsEntityListenerIsCalledByDefault(): void
+    public function as_entity_listener_is_called_by_default(): void
     {
         $entity = EntityWithAsEntityListenerFactory::createOne(['name' => 'test']);
 
         self::assertSame('test (from AsEntityListener)', $entity->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItCanDisableAllAsEntityListeners(): void
+    public function it_can_disable_all_as_entity_listeners(): void
     {
         $entity = EntityWithAsEntityListenerFactory::new()
             ->withoutDoctrineEvents()
@@ -151,8 +184,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertSame('test', $entity->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testItCanDisableSpecificAsEntityListener(): void
+    public function it_can_disable_specific_as_entity_listener(): void
     {
         $entity = EntityWithAsEntityListenerFactory::new()
             ->withoutDoctrineEvents(AsEntityListenerListener::class)
@@ -161,8 +197,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertSame('test', $entity->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testAsEntityListenerIsRestoredAfterCreation(): void
+    public function as_entity_listener_is_restored_after_creation(): void
     {
         EntityWithAsEntityListenerFactory::new()
             ->withoutDoctrineEvents()
@@ -175,8 +214,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
 
     // --- Relations: ManyToOne (child → parent) ---
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testEventsAreCalledByDefaultOnChildAndParent(): void
+    public function events_are_called_by_default_on_child_and_parent(): void
     {
         $child = ChildEntityForDoctrineEventsFactory::createOne(['name' => 'child']);
 
@@ -185,8 +227,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         self::assertStringEndsWith('(from Doctrine event)', $child->parent->name);
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testWithoutDoctrineEventsPropagatesFromChildToParent(): void
+    public function without_doctrine_events_propagates_from_child_to_parent(): void
     {
         $child = ChildEntityForDoctrineEventsFactory::new()
             ->withoutDoctrineEvents()
@@ -199,8 +244,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
 
     // --- Relations: OneToMany (parent → children) ---
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testEventsAreCalledByDefaultOnParentAndChildren(): void
+    public function events_are_called_by_default_on_parent_and_children(): void
     {
         $parent = ParentEntityForDoctrineEventsFactory::createOne([
             'name' => 'parent',
@@ -215,8 +263,11 @@ final class WithoutDoctrineEventsTest extends KernelTestCase
         }
     }
 
+    /**
+     * @test
+     */
     #[Test]
-    public function testWithoutDoctrineEventsPropagatesFromParentToChildren(): void
+    public function without_doctrine_events_propagates_from_parent_to_children(): void
     {
         $parent = ParentEntityForDoctrineEventsFactory::new()
             ->withoutDoctrineEvents()

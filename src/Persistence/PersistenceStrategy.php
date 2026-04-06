@@ -105,9 +105,9 @@ abstract class PersistenceStrategy
      *
      * @template T
      *
-     * @param class-string          $entityClass
-     * @param list<class-string>    $disabledClasses [] = disable all, [Foo::class] = disable specific
-     * @param callable():T  $callback
+     * @param class-string       $entityClass
+     * @param list<class-string> $disabledClasses [] = disable all, [Foo::class] = disable specific
+     * @param callable():T       $callback
      *
      * @return T
      */

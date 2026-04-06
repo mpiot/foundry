@@ -11,7 +11,6 @@
 
 namespace Zenstruck\Foundry\Mongo;
 
-use Doctrine\Common\EventManager;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Mapping\MappingException as MongoMappingException;
 use Doctrine\Persistence\Mapping\MappingException;

@@ -45,6 +45,6 @@ final class DoctrineEventsSubscriber
             return;
         }
 
-        $eventArgs->setNewValue('name', $object->name . ' (from Doctrine preUpdate event)');
+        $eventArgs->setNewValue('name', $object->name.' (from Doctrine preUpdate event)');
     }
 }

@@ -11,11 +11,9 @@
 
 namespace Zenstruck\Foundry\ORM;
 
-use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\MappingException as ORMMappingException;
 use Doctrine\Persistence\Mapping\MappingException;
-use Doctrine\Persistence\ObjectManager;
 use Zenstruck\Foundry\Persistence\PersistenceStrategy;
 
 /**
