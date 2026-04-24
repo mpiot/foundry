@@ -372,8 +372,15 @@ abstract class PersistentObjectFactory extends ObjectFactory
         }
 
         if ($value instanceof self) {
+            // TODO: Not know why, break some tests:
+            // $value = $value
+            //     ->withPersistMode($value->persistMode())
+            //     ->notRootFactory();
+            // So, store it instead
+            $isPersistingValue = $value->isPersisting();
+
             $value = $value
-                ->withPersistMode($this->persist)
+                ->withPersistMode($this->persistMode())
                 ->notRootFactory();
 
             if (null !== $this->disabledDoctrineEventClasses) {
@@ -391,7 +398,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
                 $value = $value
                     ->reuse(...$this->reusedObjects(), ...$value->reusedObjects())
                     ->withPersistMode(
-                        $this->isPersisting() ? PersistMode::NO_PERSIST_BUT_SCHEDULE_FOR_INSERT : PersistMode::WITHOUT_PERSISTING
+                    $this->isPersisting() && $isPersistingValue ? PersistMode::NO_PERSIST_BUT_SCHEDULE_FOR_INSERT : PersistMode::WITHOUT_PERSISTING
                     )
                 ;
 
@@ -444,7 +451,7 @@ abstract class PersistentObjectFactory extends ObjectFactory
 
                 $inverseObjects = $collection
                     ->reuse(...$this->reusedObjects())
-                    ->withPersistMode($this->isPersisting() ? PersistMode::NO_PERSIST_BUT_SCHEDULE_FOR_INSERT : PersistMode::WITHOUT_PERSISTING)
+                    ->withPersistMode($this->isPersisting() && $collection->isPersisting() ? PersistMode::NO_PERSIST_BUT_SCHEDULE_FOR_INSERT : PersistMode::WITHOUT_PERSISTING)
                     ->create([$inverseField => $object]);
 
                 $inverseObjects = ProxyGenerator::unwrap($inverseObjects, withAutoRefresh: false);

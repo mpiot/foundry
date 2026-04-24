@@ -53,6 +53,14 @@ final class FactoryCollection implements \IteratorAggregate
 
     /**
      * @internal
+     */
+    public function isPersisting(): bool
+    {
+        return $this->persistMode->isPersisting();
+    }
+
+    /**
+     * @internal
      * @return self<T, TFactory>
      */
     public function notRootFactory(): static
